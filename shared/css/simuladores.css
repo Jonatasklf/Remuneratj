@@ -1,0 +1,181 @@
+/* RemuneraTJ — visual compartilhado das duas calculadoras.
+   Mantém os arquivos de cálculo independentes e os mesmos IDs de formulário. */
+:root {
+  --rt-red:#852332; --rt-red-dark:#611a27; --rt-red-mid:#a53849;
+  --rt-ink:#312931; --rt-muted:#80747b; --rt-line:#eadfdf;
+  --rt-soft:#f8f4f3; --rt-paper:#fff; --rt-gold:#c7a06d;
+  --rt-shadow:0 8px 30px rgba(79,45,51,.05);
+}
+body.rt-calculator { margin:0; font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; color:var(--rt-ink);background:radial-gradient(circle at 3% -5%,#fceeed 0,#faf8f7 370px,#f7f6f4 800px);font-size:14px;line-height:1.58;}
+body.rt-calculator * { box-sizing:border-box; }
+body.rt-calculator .rt-shell,body.rt-calculator main.rt-main {width:min(1210px,calc(100% - 64px));margin-inline:auto;}
+body.rt-calculator .rt-header {background:#252328;border-top:5px solid var(--rt-red);color:white;min-height:87px;}
+body.rt-calculator .rt-header-inner {min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+body.rt-calculator .rt-brand {display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;}
+body.rt-calculator .rt-brand-mark {width:43px;height:43px;display:grid;place-items:center;border-radius:11px;background:#76303a;border:1px solid #ab6470;color:#ffe2b9;font-weight:850;font-size:17px;letter-spacing:-.7px;flex:0 0 auto;}
+body.rt-calculator .rt-brand-name {font-size:22px;letter-spacing:-.8px;font-weight:800;line-height:1.05;}
+body.rt-calculator .rt-brand-name>span,body.rt-calculator .rt-footer strong span {color:#e7c18e;}
+body.rt-calculator .rt-brand-name small {display:block;margin-top:5px;color:#c3b6bd;font-size:9px;font-weight:760;letter-spacing:1px;}
+body.rt-calculator .rt-header-status {display:flex;align-items:center;gap:9px;color:#dfd5d8;font-size:11px;}
+body.rt-calculator .rt-status-dot,body.rt-calculator .rt-eyebrow-dot {display:inline-block;background:var(--rt-gold);height:7px;width:7px;flex:0 0 7px;border-radius:50%;}
+body.rt-calculator .rt-careers {display:inline-flex;align-items:center;gap:5px;padding:6px;background:#fff;border:1px solid var(--rt-line);border-radius:13px;margin:26px 0 0;max-width:100%;box-shadow:0 2px 14px rgba(89,53,59,.035);}
+body.rt-calculator .rt-careers a {display:inline-flex;align-items:center;justify-content:center;text-decoration:none;padding:10px 19px;white-space:nowrap;border-radius:9px;color:#746970;font-size:12px;font-weight:750;line-height:1.3;}
+body.rt-calculator .rt-careers a[aria-current=page] {background:var(--rt-red);color:white;box-shadow:0 3px 9px rgba(120,29,44,.12);}
+body.rt-calculator .rt-careers a:hover:not([aria-current]) {background:#f9eff0;color:var(--rt-red);}
+body.rt-calculator .rt-hero {display:flex;align-items:center;justify-content:space-between;gap:30px;margin:39px 0 39px;}
+body.rt-calculator .rt-eyebrow {display:flex;align-items:center;gap:9px;color:var(--rt-red);font-weight:780;letter-spacing:1px;font-size:10.5px;}
+body.rt-calculator .rt-hero h1 {margin:11px 0 11px;font-size:clamp(29px,3.2vw,43px);letter-spacing:-1.75px;line-height:1.16;font-weight:810;color:#33282e;}
+body.rt-calculator .rt-hero h1 span {color:#9a2b3a;}
+body.rt-calculator .rt-hero p {margin:0;color:var(--rt-muted);max-width:685px;line-height:1.75;font-size:13px;}
+body.rt-calculator .rt-hero-note {width:248px;flex:0 0 248px;display:flex;align-items:center;gap:11px;padding:15px 16px;background:white;border:1px solid var(--rt-line);border-left:3px solid var(--rt-gold);border-radius:12px;box-shadow:var(--rt-shadow);}
+body.rt-calculator .rt-note-symbol {display:grid;place-items:center;background:#f5eadd;color:#926137;font-size:14px;font-weight:850;border-radius:9px;width:35px;height:35px;flex:0 0 35px;}
+body.rt-calculator .rt-hero-note strong,body.rt-calculator .rt-hero-note small {display:block;}
+body.rt-calculator .rt-hero-note strong {color:#5c3f44;font-size:11.5px;line-height:1.35;}
+body.rt-calculator .rt-hero-note small {margin-top:4px;color:#8a7c82;font-size:10px;line-height:1.42;}
+/* unified 2-column frame */
+body.rt-calculator .workspace,body.rt-calculator .app-grid {display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:24px;align-items:start;margin-bottom:66px;}
+body.rt-calculator .inputs-column,body.rt-calculator .form-side,body.rt-calculator .results-column,body.rt-calculator .results-side {min-width:0;}
+body.rt-calculator .section-topline,body.rt-calculator .section-caption {height:29px;display:flex;justify-content:space-between;gap:10px;align-items:start;margin-bottom:14px;}
+body.rt-calculator .section-topline h2,body.rt-calculator .section-caption h2 {font-size:15px;letter-spacing:-.15px;font-weight:780;margin:0;color:#43353c;}
+body.rt-calculator .section-topline span,body.rt-calculator .section-caption>span {font-size:10px;letter-spacing:.4px;margin-top:2px;color:#998e93;}
+body.rt-calculator .panel {background:white;border:1px solid var(--rt-line);border-radius:15px;box-shadow:var(--rt-shadow);}
+body.rt-calculator .form-panel,body.rt-calculator .section {padding:24px 25px 26px;margin-bottom:16px;}
+body.rt-calculator .panel-heading,body.rt-calculator .panel-head {display:flex;align-items:center;gap:12px;margin-bottom:21px;}
+body.rt-calculator .panel-heading h3,body.rt-calculator .panel-head h3 {margin:0 0 3px;font-size:16px;letter-spacing:-.35px;font-weight:770;color:#392e35;}
+body.rt-calculator .panel-heading p,body.rt-calculator .panel-head p {margin:0;font-size:11px;line-height:1.5;color:#91838a;}
+body.rt-calculator .section-icon,body.rt-calculator .mini-icon {display:grid;place-items:center;background:#f8e9ec!important;color:#952e3e!important;height:43px;width:43px;flex:0 0 43px;border-radius:11px;border:0;}
+body.rt-calculator .section-icon.success,body.rt-calculator .mini-icon.indemnity-icon {background:#f8efdf!important;color:#956e3c!important;}
+body.rt-calculator .mini-icon svg.icon {width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+body.rt-calculator .field-grid,body.rt-calculator .fields {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;row-gap:17px;}
+body.rt-calculator .field.full,body.rt-calculator .span2 {grid-column:1/-1;}
+body.rt-calculator .field label,body.rt-calculator .field-label,body.rt-calculator .switcher-label {display:block;font-size:11.5px;font-weight:740;color:#493840;line-height:1.45;margin:0 0 8px;}
+body.rt-calculator .field select,body.rt-calculator .field input:not([type=checkbox]) {width:100%;min-height:44px;height:44px;border:1px solid #e0d7da;border-radius:9px;background-color:white;color:#3d3238;font-size:12px;padding:8px 12px;outline:none;}
+body.rt-calculator .field select {appearance:none;background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%23985f69" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="m6 9 6 6 6-6"/%3E%3C/svg%3E');background-position:right 12px center;background-repeat:no-repeat;padding-right:34px;cursor:pointer;}
+body.rt-calculator .field select:focus,body.rt-calculator .field input:focus {border-color:#a02c3d;box-shadow:0 0 0 3px rgba(155,38,55,.12);}
+body.rt-calculator .field small {font-size:10px;color:#968990;line-height:1.5;margin:6px 0 0;}
+body.rt-calculator .segmented,body.rt-calculator .segmented-regime {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:4px;gap:4px;background:#f3edee;border:0;border-radius:10px;}
+body.rt-calculator .segment,body.rt-calculator .regime-option {display:grid;place-items:center;background:transparent;color:#7d6972;min-width:0;min-height:36px;padding:7px 4px;font-size:11px;font-weight:750;border:0;border-radius:7px;}
+body.rt-calculator .segment.active,body.rt-calculator .regime-option.active {background:white;color:var(--rt-red);box-shadow:0 2px 7px rgba(99,48,58,.095);}
+body.rt-calculator .options-panel,body.rt-calculator .fold {margin-bottom:16px;overflow:hidden;}
+body.rt-calculator .options-panel>summary,body.rt-calculator .fold>summary {display:flex;align-items:center;gap:12px;padding:16px 22px;list-style:none;cursor:pointer;}
+body.rt-calculator .options-panel>summary::-webkit-details-marker,body.rt-calculator .fold>summary::-webkit-details-marker {display:none;}
+body.rt-calculator .details-heading strong,body.rt-calculator .fold>summary strong {display:block;font-weight:765;font-size:14px;color:#3b3036;line-height:1.4;}
+body.rt-calculator .details-heading small,body.rt-calculator .fold>summary small {display:block;color:#95888d;font-size:10.5px;margin-top:2px;line-height:1.35;}
+body.rt-calculator .options-content,body.rt-calculator .fold-body {padding:0 23px 23px;}
+body.rt-calculator .field-explanation,body.rt-calculator .fold-explanation {background:#fbf8f7;border:1px solid #f0e6e5;border-radius:9px;color:#876f76;font-size:11px;line-height:1.6;padding:12px 14px;margin:0 0 17px;}
+body.rt-calculator .form-actions {display:flex;gap:11px;margin-top:2px;}
+body.rt-calculator .btn {display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:0;padding:9px 14px;border-radius:9px;font-size:11.5px;font-weight:780;line-height:1.3;text-align:center;white-space:normal;}
+body.rt-calculator .form-actions .calculate,body.rt-calculator .form-actions .btn-primary {flex:1;background:var(--rt-red);color:white;box-shadow:0 4px 10px rgba(132,36,52,.12);}
+body.rt-calculator .form-actions .calculate:hover,body.rt-calculator .form-actions .btn-primary:hover {background:#6a1c28;}
+body.rt-calculator .form-actions .reset,body.rt-calculator .form-actions .btn-secondary {background:#f2ebec;color:#79505a;}
+body.rt-calculator .form-autoupdate,body.rt-calculator .form-status {font-size:11px;margin:12px 1px 0;color:#806f77;line-height:1.55;}
+/* unified results */
+body.rt-calculator .results-sticky,body.rt-calculator .results-inner {position:sticky;top:20px;}
+body.rt-calculator .results-state,body.rt-calculator .state {display:inline-flex;align-items:center;margin:0 0 12px;min-height:27px;padding:5px 11px;border-radius:7px;background:#f6eeee;color:#7d6872;border:1px solid #eadfe1;font-size:10.5px;font-weight:760;line-height:1.3;}
+body.rt-calculator .state::before {content:"";display:inline-block;width:6px;height:6px;margin-right:7px;background:currentColor;border-radius:50%;}
+body.rt-calculator .results-state.calculated,body.rt-calculator .state.ready {background:#fbf3e7;color:#8c612f;border-color:#ebd4b5;}
+body.rt-calculator .results-state.outdated,body.rt-calculator .state.stale {background:#fff6ec;color:#99642f;border-color:#eed6b9;}
+body.rt-calculator .salary-card,body.rt-calculator .result-hero {background:linear-gradient(127deg,#7e2030 0%,#651d2a 61%,#46252e 100%);border:1px solid rgba(222,185,177,.19);border-radius:16px;padding:26px 29px;box-shadow:0 16px 32px rgba(100,32,44,.16);position:relative;overflow:hidden;color:#fff;}
+body.rt-calculator .salary-card::after,body.rt-calculator .result-hero::after {content:"";position:absolute;width:285px;height:285px;border:1px solid rgba(255,220,207,.09);border-radius:50%;right:-106px;top:-104px;pointer-events:none;}
+body.rt-calculator .salary-card>* ,body.rt-calculator .result-hero>* {position:relative;z-index:1;}
+body.rt-calculator .salary-category,body.rt-calculator .result-eyebrow {display:flex;align-items:center;gap:7px;color:#f4d5ab;font-size:10px;letter-spacing:.9px;font-weight:800;}
+body.rt-calculator .salary-period,body.rt-calculator .result-period {font-size:11px;color:#e2cad0;}
+body.rt-calculator .salary-value,body.rt-calculator .result-number {display:block;font-size:clamp(33px,3.8vw,47px);margin:17px 0 8px;letter-spacing:-1.6px;line-height:1.15;font-weight:800;color:#fff;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;white-space:normal;}
+body.rt-calculator .salary-card p,body.rt-calculator .result-hero p {color:#edd3d7;font-size:11.5px;line-height:1.6;max-width:375px;margin:0;}
+body.rt-calculator .salary-divider,body.rt-calculator .result-divider {height:1px;background:rgba(255,239,224,.18);margin:22px 0 18px;}
+body.rt-calculator .salary-metrics,body.rt-calculator .result-kpis {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+body.rt-calculator .salary-metrics span,body.rt-calculator .result-kpis small {display:block;color:#dfc7cd;font-size:10px;margin-bottom:4px;}
+body.rt-calculator .salary-metrics strong,body.rt-calculator .result-kpis strong {display:block;color:#fff;font-size:18px;font-weight:800;line-height:1.35;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;white-space:normal;}
+body.rt-calculator .salary-composition {margin-top:21px;}
+body.rt-calculator .composition-bar {height:6px;background:#70424e;border-radius:6px;overflow:hidden;display:flex;}
+body.rt-calculator .bar-part.wages,body.rt-calculator .legend-dot.wages {background:#f2e4d6;}
+body.rt-calculator .bar-part.benefits,body.rt-calculator .legend-dot.benefits {background:#c95d6c;}
+body.rt-calculator .bar-part.extras,body.rt-calculator .legend-dot.extras {background:#d1a568;}
+body.rt-calculator .legend {display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#e8d0d3;font-size:10px;margin-top:9px;}
+body.rt-calculator .legend>span {display:flex;align-items:center;gap:6px;}
+body.rt-calculator .legend-dot {width:7px;height:7px;border-radius:50%;display:inline-block;}
+body.rt-calculator .summary-panel,body.rt-calculator .resume {margin:16px 0 12px;padding:23px 25px;}
+body.rt-calculator .summary-panel .panel-heading,body.rt-calculator .resume .panel-heading {margin-bottom:17px;}
+body.rt-calculator .summary-rows {width:100%;}
+body.rt-calculator .summary-row {display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid #f2ebec;color:#78696f;font-size:11.5px;}
+body.rt-calculator .summary-row strong {font-size:12.5px;color:#45333b;white-space:nowrap;font-variant-numeric:tabular-nums;}
+body.rt-calculator .summary-row.discount strong {color:#a84b5a;}
+body.rt-calculator .summary-row.total {border:0;margin-top:4px;padding-bottom:0;font-size:12px;font-weight:780;color:#45323a;}
+body.rt-calculator .summary-row.total strong {font-size:17px;color:var(--rt-red);}
+body.rt-calculator .summary-symbol.plus {color:var(--rt-red);background:#f8ebed;}
+body.rt-calculator .summary-symbol.minus {color:#b87555;background:#fdf1ea;}
+body.rt-calculator .result-actions,body.rt-calculator .actionbar {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:17px;}
+body.rt-calculator .result-actions .btn,body.rt-calculator .actionbar .btn {border:1px solid #e8dddd;background:white;color:#80555d;font-size:11px;box-shadow:none;}
+body.rt-calculator .result-actions .btn:not(:disabled):hover,body.rt-calculator .actionbar .btn:not(:disabled):hover {background:#fbf1f1;}
+body.rt-calculator .breakdown {margin:0 0 12px;overflow:hidden;}
+body.rt-calculator .breakdown>summary {display:flex;align-items:center;justify-content:space-between;gap:12px;list-style:none;cursor:pointer;padding:17px 23px;}
+body.rt-calculator .breakdown>summary::-webkit-details-marker {display:none;}
+body.rt-calculator .breakdown>summary strong {font-size:12px;color:#40323a;}
+body.rt-calculator .breakdown>summary small {display:block;margin-top:3px;font-size:10px;color:#998990;}
+body.rt-calculator .breakdown-body,body.rt-calculator .breakdown .rows {padding:0 22px 15px;}
+body.rt-calculator .detail-row,body.rt-calculator .line {border-top:1px solid #f3edee;border-bottom:0;padding:10px 0;color:#756970;font-size:11px;}
+body.rt-calculator .detail-row strong,body.rt-calculator .line strong {font-size:11.5px;color:#4d3c44;font-variant-numeric:tabular-nums;}
+body.rt-calculator .line.negative strong {color:#a64b5b;}
+body.rt-calculator .group-label {color:#a37079;margin:16px 0 8px;font-size:10px;font-weight:850;letter-spacing:.8px;}
+body.rt-calculator .notice,body.rt-calculator .disclaimer {background:#fcf7f3;border:1px solid #f0e3db;border-radius:12px;color:#826b64;padding:19px;margin-top:16px;font-size:11px;line-height:1.7;}
+body.rt-calculator .notice strong,body.rt-calculator .disclaimer b {color:#71423f;font-size:12px;}
+body.rt-calculator .notice p,body.rt-calculator .disclaimer p {font-size:11px;line-height:1.7;color:#8f756f;}
+body.rt-calculator .indemnity-form {border-left:3px solid var(--rt-gold);}
+body.rt-calculator .indemnity-results {border-left:3px solid var(--rt-gold);padding:23px 25px;margin-top:14px;}
+body.rt-calculator .indem-kpis>div {background:#fbf7f1;}
+body.rt-calculator .fixed-parameter {background:#faf6f2;}
+body.rt-calculator .rt-footer {background:#fff;border-top:1px solid var(--rt-line);padding:29px 0;}
+body.rt-calculator .rt-footer-inner {display:flex;justify-content:space-between;gap:20px;align-items:center;}
+body.rt-calculator .rt-footer strong {font-size:17px;letter-spacing:-.35px;color:#3a2b31;}
+body.rt-calculator .rt-footer p,body.rt-calculator .rt-footer small {display:block;font-size:10.5px;margin:3px 0;color:#91858b;}
+body.rt-calculator .rt-credits {text-align:right;}
+body.rt-calculator .rt-credits a {font-size:11px;font-weight:700;color:var(--rt-red);text-decoration:none;}
+body.rt-calculator .rt-credits a:hover {text-decoration:underline;}
+body.rt-calculator .rt-calculator a:focus-visible,body.rt-calculator button:focus-visible,body.rt-calculator select:focus-visible,body.rt-calculator summary:focus-visible {outline:3px solid #d5aa84;outline-offset:2px;}
+@media(max-width:1020px) {
+ body.rt-calculator .workspace,body.rt-calculator .app-grid {grid-template-columns:1fr;gap:29px;}
+ body.rt-calculator .results-sticky,body.rt-calculator .results-inner {position:static;}
+ body.rt-calculator .rt-hero-note {display:none;}
+}
+@media(max-width:650px) {
+ body.rt-calculator .rt-shell,body.rt-calculator main.rt-main {width:calc(100% - 30px);}
+ body.rt-calculator .rt-header {min-height:75px;}
+ body.rt-calculator .rt-header-inner {min-height:70px;}
+ body.rt-calculator .rt-header-status {display:none;}
+ body.rt-calculator .rt-careers {display:flex;width:100%;gap:3px;margin-top:18px;}
+ body.rt-calculator .rt-careers a {flex:1;padding:10px 4px;font-size:10.5px;white-space:normal;}
+ body.rt-calculator .rt-hero {margin:30px 0 29px;}
+ body.rt-calculator .rt-hero h1 {font-size:34px;letter-spacing:-1.25px;}
+ body.rt-calculator .rt-hero p {font-size:12px;}
+ body.rt-calculator .form-panel,body.rt-calculator .section {padding:20px 19px;}
+ body.rt-calculator .field-grid,body.rt-calculator .fields {grid-template-columns:minmax(0,1fr);gap:15px;}
+ body.rt-calculator .field.full,body.rt-calculator .span2 {grid-column:1/-1;}
+ body.rt-calculator .options-panel>summary,body.rt-calculator .fold>summary {padding:16px 18px;}
+ body.rt-calculator .options-content,body.rt-calculator .fold-body {padding:0 18px 19px;}
+ body.rt-calculator .mini-icon,body.rt-calculator .section-icon {height:38px;width:38px;flex-basis:38px;}
+ body.rt-calculator .salary-card,body.rt-calculator .result-hero {padding:23px 21px;}
+ body.rt-calculator .salary-value,body.rt-calculator .result-number {font-size:clamp(32px,9vw,42px);}
+ body.rt-calculator .summary-panel,body.rt-calculator .resume,body.rt-calculator .indemnity-results {padding:21px 19px;}
+ body.rt-calculator .rt-footer-inner {align-items:flex-start;flex-direction:column;gap:10px;}
+ body.rt-calculator .rt-credits {text-align:left;}
+ body.rt-calculator .indem-work-modes {grid-template-columns:minmax(0,1fr);}
+}
+@media(max-width:380px) {
+ body.rt-calculator .form-actions {flex-direction:column-reverse;}
+ body.rt-calculator .form-actions .btn {width:100%;}
+ body.rt-calculator .result-actions,body.rt-calculator .actionbar {gap:7px;}
+}
+@media print {
+ body.rt-calculator .rt-header,body.rt-calculator .rt-careers,body.rt-calculator .rt-hero,body.rt-calculator .rt-footer {display:none!important;}
+ body.rt-calculator .workspace,body.rt-calculator .app-grid {display:block;}
+ body.rt-calculator .results-column,body.rt-calculator .results-side {width:100%;}
+ body.rt-calculator main.rt-main {width:100%;}
+ body.rt-calculator .results-sticky,body.rt-calculator .results-inner {position:static;}
+ body.rt-calculator .salary-card,body.rt-calculator .result-hero {print-color-adjust:exact;-webkit-print-color-adjust:exact;}
+}
+/* Ícones e topo do cartão salarial: comportamento idêntico nas duas páginas. */
+body.rt-calculator svg.icon {width:18px;height:18px;flex-shrink:0;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.8;vertical-align:middle;}
+body.rt-calculator .salary-card-top {display:flex;align-items:center;justify-content:space-between;gap:12px;}
+body.rt-calculator .salary-category svg.icon {width:16px;height:16px;}
+/* Sprite SVG oculto: impede área vazia antes do cabeçalho do Oficial. */
+body.rt-calculator svg.icon-definitions {position:absolute!important;width:0!important;height:0!important;overflow:hidden!important;pointer-events:none!important;}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#7e1d28" name="theme-color"/>
+<meta content="Simule a remuneração mensal de um Escrevente Técnico Judiciário do TJSP com detalhamento de vencimentos, auxílios, adicionais e descontos." name="description"/>
+<title>Simulador de Remuneração | Escrevente TJSP</title>
+<link href="../assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="./css/base.css" rel="stylesheet"/>
+<link href="./css/tema-tjsp.css" rel="stylesheet"/><link href="../shared/css/simuladores.css" rel="stylesheet"/></head>
+<body class="rt-calculator rt-escrevente">
+<svg aria-hidden="true" class="icon-definitions" xmlns="http://www.w3.org/2000/svg">
+<symbol id="i-calc" viewbox="0 0 24 24"><rect height="20" rx="2" width="14" x="5" y="2"></rect><path d="M8 6h8M8 10h2m4 0h2M8 14h2m4 0h2M8 18h2m4 0h2"></path></symbol>
+<symbol id="i-wallet" viewbox="0 0 24 24"><rect height="15" rx="3" width="18" x="3" y="5"></rect><path d="M3 9h18M16 14h3M7 5V3h11"></path></symbol>
+<symbol id="i-user" viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></symbol>
+<symbol id="i-heart" viewbox="0 0 24 24"><path d="M20.8 8.5c0 4.7-8.8 10.4-8.8 10.4S3.2 13.2 3.2 8.5a4.7 4.7 0 0 1 8.8-2.3 4.7 4.7 0 0 1 8.8 2.3Z"></path></symbol>
+<symbol id="i-shield" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-4"></path></symbol>
+<symbol id="i-info" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6m0-10v.1"></path></symbol>
+<symbol id="i-chevron" viewbox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></symbol>
+<symbol id="i-refresh" viewbox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5"></path><path d="M5.7 9A7 7 0 0 1 17.5 6L20 12M4 12l2.5 6A7 7 0 0 0 18.3 15"></path></symbol>
+<symbol id="i-copy" viewbox="0 0 24 24"><rect height="12" rx="2" width="12" x="8" y="8"></rect><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path></symbol>
+<symbol id="i-print" viewbox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4V9h16v9h-2"></path><path d="M6 14h12v7H6zM16 12h.01"></path></symbol>
+<symbol id="i-check" viewbox="0 0 24 24"><path d="m5 12 4 4 10-10"></path></symbol>
+<symbol id="i-arrow" viewbox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"></path></symbol>
+</svg>
+<header class="rt-header"><div class="rt-shell rt-header-inner">
+<a aria-label="RemuneraTJ — página inicial" class="rt-brand" href="../index.html">
+<span aria-hidden="true" class="rt-brand-mark">TJ</span><span class="rt-brand-name">Remunera<span>TJ</span><small>SIMULADOR DE REMUNERAÇÃO</small></span>
+</a><div class="rt-header-status"><span class="rt-status-dot"></span><span>Projeto independente · Não oficial</span></div>
+</div></header>
+<main class="rt-main container" id="inicio">
+<nav aria-label="Escolha da calculadora" class="rt-careers"><a href="../index.html">Início</a><a aria-current="page" data-career="escrevente" href="../remuneracao-tjsp/index.html">Escrevente</a><a data-career="oficial" href="../remuneracao-oficial/index.html">Oficial de Justiça</a></nav>
+<section class="rt-hero"><div><div class="rt-eyebrow"><span class="rt-eyebrow-dot"></span> CARREIRAS · ESCREVENTE TÉCNICO JUDICIÁRIO</div><h1>Seu salário, <span>sem complicação.</span></h1><p>Informe sua carreira, auxílios e descontos para calcular a remuneração mensal estimada. Você controla quando o cálculo é atualizado.</p></div><aside class="rt-hero-note"><span aria-hidden="true" class="rt-note-symbol">✓</span><span><strong>Cálculo sob seu controle</strong><small>Os valores só mudam ao clicar em “Calcular remuneração”.</small></span></aside></section>
+<div class="workspace">
+<section aria-labelledby="titulo-config" class="inputs-column">
+<div class="section-topline"><h2 id="titulo-config">Configure sua simulação</h2><span>01 — Perfil e benefícios</span></div>
+<form id="simuladorForm" novalidate="">
+<div class="panel form-panel">
+<div class="panel-heading"><div class="section-icon primary"><svg class="icon"><use href="#i-user"></use></svg></div><div><h3>Seu perfil profissional</h3><p>Informações sobre o cargo, carreira e qualificação.</p></div></div>
+<div class="field-grid">
+<div class="field full"><label for="cargo">Cargo em comissão ou função gratificada</label><select id="cargo"><option value="">Nenhum — Escrevente</option><option value="ajc">Assistente Judiciário</option><option value="ajur">Assistente Jurídico</option><option value="csj">Chefe de Seção Judiciário</option><option value="csjGab">Chefe de Seção Judiciário - Gabinete</option><option value="coord">Coordenador</option><option value="super">Supervisor</option><option value="etjGab">Escrevente - Gabinete (2º Grau)</option><option value="etjGabUpj">Escrevente - Gabinete (UPJ)</option><option value="estenotipista">Estenotipista</option><option value="esadm">Gratificação de Setores Administrativos</option><option value="eqgab">Gratificação de Equipe de Apoio aos Gabinetes</option></select></div>
+<div class="field"><label for="padraoVencimento">Padrão de vencimento</label><select id="padraoVencimento"><option value="5A-CE">5A-CE</option><option value="5B-CE">5B-CE</option><option value="5C-CE">5C-CE</option><option value="5D-CE">5D-CE</option><option value="5E-CE">5E-CE</option><option value="5F-CE">5F-CE</option><option value="5G-CE">5G-CE</option><option value="5H-CE">5H-CE</option><option value="5I-CE">5I-CE</option><option value="5J-CE">5J-CE</option><option value="5K-CE">5K-CE</option><option value="5L-CE">5L-CE</option><option value="5M-CE">5M-CE</option><option value="5N-CE">5N-CE</option><option value="5O-CE">5O-CE</option><option value="5P-CE">5P-CE</option><option value="5Q-CE">5Q-CE</option><option value="5R-CE">5R-CE</option></select><small>Progressão na carreira</small></div>
+<div class="field"><label for="formacaoAcademica">Formação acadêmica</label><select id="formacaoAcademica"><option value="0">Ensino Médio</option><option value="0.075">Ensino Superior</option><option value="0.1">Pós-graduação (lato sensu)</option><option value="0.15">Mestrado</option><option value="0.2">Doutorado</option></select><small>Para o adicional de qualificação</small></div>
+<div class="field"><label for="quinquenios">Quinquênios</label><input id="quinquenios" inputmode="numeric" max="20" min="0" step="1" type="number" value="0"/><small>Um quinquênio a cada 5 anos de serviço</small></div>
+<div class="field"><label for="dependentes">Dependentes para IRPF</label><input id="dependentes" inputmode="numeric" max="20" min="0" step="1" type="number" value="0"/><small>Dependentes para dedução no imposto</small></div>
+</div>
+</div>
+<div class="panel form-panel">
+<div class="panel-heading"><div class="section-icon success"><svg class="icon"><use href="#i-heart"></use></svg></div><div><h3>Auxílios e benefícios</h3><p>Informe os dias trabalhados e os auxílios aplicáveis.</p></div></div>
+<div class="field-grid">
+<div class="field"><label for="diasAlimentacao">Dias de auxílio-alimentação</label><input id="diasAlimentacao" inputmode="numeric" max="31" min="0" step="1" type="number" value="20"/><small>Presencial ou remoto</small></div>
+<div class="field"><label for="diasTransporte">Dias de auxílio-transporte</label><input id="diasTransporte" inputmode="numeric" max="31" min="0" step="1" type="number" value="20"/><small>Apenas em trabalho presencial</small></div>
+<div class="field full field-switcher"><span class="switcher-label">Seu regime de trabalho</span><div aria-label="Atalhos de regime de trabalho" class="segmented" role="group"><button aria-pressed="true" class="segment active" data-presencial="20" type="button">Presencial</button><button aria-pressed="false" class="segment" data-presencial="0" type="button">Remoto</button><button aria-pressed="false" class="segment" data-presencial="custom" type="button">Personalizado</button></div><small>O atalho altera somente os dias de transporte; ajuste alimentação e demais campos livremente.</small></div>
+<div class="field full"><label for="faixaEtariaAuxilioSaude">Faixa etária do auxílio-saúde</label><select id="faixaEtariaAuxilioSaude"><option value="1">Até 18 anos</option><option value="2">De 19 a 23 anos</option><option value="3">De 24 a 28 anos</option><option value="4">De 29 a 33 anos</option><option value="5">De 34 a 38 anos</option><option value="6">De 39 a 43 anos</option><option value="7">De 44 a 48 anos</option><option value="8">De 49 a 53 anos</option><option value="9">De 54 a 58 anos</option><option value="10">A partir de 59 anos</option></select></div>
+<div class="field"><label for="auxilioCreche">Filhos para auxílio-creche</label><input id="auxilioCreche" inputmode="numeric" max="20" min="0" step="1" type="number" value="0"/></div>
+<div class="field"><label for="auxilioFilhoDeficiencia">Filhos com deficiência</label><input id="auxilioFilhoDeficiencia" inputmode="numeric" max="20" min="0" step="1" type="number" value="0"/></div>
+<div class="field full"><label for="acrescimoAuxilioSaude">Acréscimo de 50% no auxílio-saúde por deficiência ou doença grave?</label><select id="acrescimoAuxilioSaude"><option selected="" value="1">Não</option><option value="1.5">Sim</option></select></div>
+</div>
+</div>
+<details class="panel options-panel" id="iamspePanel" open="">
+<summary><span class="section-icon subtle"><svg class="icon"><use href="#i-shield"></use></svg></span><span class="details-heading"><strong>IAMSPE e dependentes</strong><small>Contribuições, beneficiários e agregados</small></span><span class="details-tag">OPCIONAL</span><svg class="icon chevron"><use href="#i-chevron"></use></svg></summary>
+<div class="options-content"><p class="field-explanation">A contribuição do servidor está selecionada conforme o formulário original. Configure abaixo os dependentes e agregados, se houver.</p>
+<div class="field-grid">
+<div class="field full"><label for="iamspe">IAMSPE — situação do servidor</label><select id="iamspe"><option value="0.02">Sim (menos de 59 anos)</option><option value="0.03">Sim (a partir de 59 anos)</option><option value="0">Não</option></select></div>
+<div class="field"><label for="dependentesIamspeIdadeInferior">Beneficiários abaixo de 59 anos</label><input id="dependentesIamspeIdadeInferior" inputmode="numeric" max="20" min="0" step="1" type="number" value="0"/></div>
+<div class="field"><label for="dependentesIamspeIdadeSuperior">Beneficiários a partir de 59 anos</label><input id="dependentesIamspeIdadeSuperior" inputmode="numeric" max="20" min="0" step="1" type="number" value="0"/></div>
+<div class="field"><label for="agregadosIamspeIdadeInferior">Agregados abaixo de 59 anos</label><input id="agregadosIamspeIdadeInferior" inputmode="numeric" max="20" min="0" step="1" type="number" value="0"/></div>
+<div class="field"><label for="agregadosIamspeIdadeSuperior">Agregados a partir de 59 anos</label><input id="agregadosIamspeIdadeSuperior" inputmode="numeric" max="20" min="0" step="1" type="number" value="0"/></div>
+</div>
+</div>
+</details>
+<details class="panel options-panel" id="previdenciaPanel" open="">
+<summary><span class="section-icon subtle"><svg class="icon"><use href="#i-shield"></use></svg></span><span class="details-heading"><strong>Regime previdenciário</strong><small>Escolha a regra de contribuição ao RPPS</small></span><svg class="icon chevron"><use href="#i-chevron"></use></svg></summary>
+<div class="options-content">
+<p class="field-explanation">Selecione o enquadramento previdenciário que consta do seu vínculo. O regime limitado ao teto preserva o cálculo utilizado anteriormente neste simulador. A escolha interfere na contribuição previdenciária e na base do IRRF, não nos vencimentos.</p>
+<div class="field-grid">
+<div class="field full"><label for="modoPrevidencia">Regime de contribuição ao RPPS</label><select id="modoPrevidencia">
+<option selected="" value="teto">RPPS limitado ao teto do INSS · previdência complementar</option>
+<option value="integral">RPPS sobre a base contributiva integral · vínculo sem limitação ao teto</option>
+<option value="manual">Informar contribuição previdenciária manualmente</option>
+</select><small>Confira o ingresso, eventuais opções de migração e a contribuição efetiva no holerite.</small></div>
+<div class="field full" hidden="" id="previdenciaManualBox"><label for="previdenciaManual">Contribuição previdenciária mensal (R$)</label><input disabled="" id="previdenciaManual" inputmode="decimal" max="99999.99" min="0" step="0.01" type="number" value="0"/><small>Informe o desconto exato da previdência. Não inclua IAMSPE nem consignados.</small></div>
+</div>
+</div>
+</details>
+<div class="form-actions"><button class="btn btn-secondary" id="resetBtn" type="button"><svg class="icon"><use href="#i-refresh"></use></svg> Restaurar valores</button><button class="btn btn-primary" id="calculateBtn" type="submit">Calcular remuneração <svg class="icon"><use href="#i-arrow"></use></svg></button></div>
+<p aria-live="polite" class="form-autoupdate" id="calculationStatus" role="status">Preencha os campos e clique em <strong>Calcular remuneração</strong> para gerar a simulação.</p>
+</form>
+</section>
+<section aria-labelledby="titulo-resultado" class="results-column" id="resultado">
+<div class="section-topline"><h2 id="titulo-resultado">Sua remuneração</h2><span>02 — Resultado estimado</span></div>
+<div class="results-sticky">
+<p aria-live="polite" class="results-state" id="resultsState" role="status">Aguardando cálculo</p>
+<div class="salary-card">
+<div class="salary-card-top"><span class="salary-category"><svg class="icon"><use href="#i-wallet"></use></svg> LÍQUIDO ESTIMADO</span><span class="salary-period">por mês</span></div>
+<div aria-live="polite" class="salary-value" id="remuneracaoLiquida">—</div>
+<p>Valor estimado a receber, incluindo auxílios e adicionais.</p>
+<div class="salary-divider"></div>
+<div class="salary-metrics"><div><span>Remuneração bruta</span><strong id="remuneracaoBruta">—</strong></div><div><span>Total de descontos</span><strong class="negative totalDescontos">—</strong></div></div>
+<div class="salary-composition"><div aria-label="Distribuição dos componentes positivos da remuneração" class="composition-bar" role="img"><span class="bar-part wages" id="barVencimentos"></span><span class="bar-part benefits" id="barAuxilios"></span><span class="bar-part extras" id="barAdicionais"></span></div><div class="legend"><span><i class="legend-dot wages"></i> Vencimentos</span><span><i class="legend-dot benefits"></i> Auxílios</span><span><i class="legend-dot extras"></i> Adicionais</span></div></div>
+</div>
+<div class="calc-message" hidden="" id="calcMessage" role="status"></div>
+<div class="panel summary-panel"><div class="panel-heading compact"><div><h3>Composição do salário</h3><p>Entenda de onde vem o valor calculado.</p></div></div>
+<div class="summary-rows"><div class="summary-row"><span><span class="summary-symbol plus">+</span> Vencimentos</span><strong id="vencimentos">—</strong></div><div class="summary-row"><span><span class="summary-symbol plus">+</span> Auxílios</span><strong class="totalAuxilios">—</strong></div><div class="summary-row"><span><span class="summary-symbol plus">+</span> Adicionais</span><strong class="totalAdicionais">—</strong></div><div class="summary-row discount"><span><span class="summary-symbol minus">−</span> Descontos</span><strong class="totalDescontos">—</strong></div><div class="summary-row total"><span>Total líquido estimado</span><strong id="liquidoResumo">—</strong></div></div>
+<div class="result-actions"><button class="btn btn-outline" disabled="" id="copyBtn" type="button"><svg class="icon"><use href="#i-copy"></use></svg><span id="copyLabel">Copiar resumo</span></button><button class="btn btn-outline" disabled="" id="printBtn" type="button"><svg class="icon"><use href="#i-print"></use></svg> Imprimir</button></div>
+</div>
+<details class="panel breakdown" open=""><summary><span><strong>Detalhamento dos vencimentos</strong><small>Salário-base, progressão e gratificações</small></span><svg class="icon chevron"><use href="#i-chevron"></use></svg></summary><div class="breakdown-body"><div class="detail-row"><span>Valor base</span><strong id="base">—</strong></div><div class="detail-row"><span>Progressão</span><strong id="progressao">—</strong></div><div class="detail-row"><span>GAJ <small>Gratificação de Atividade Judiciária</small></span><strong id="gaj">—</strong></div><div class="detail-row"><span>Gratificação de representação</span><strong id="repr">—</strong></div><div class="detail-row subtotal"><span>Total de vencimentos</span><strong id="vencimentosDetalhe">—</strong></div></div></details>
+<details class="panel breakdown"><summary><span><strong>Detalhamento dos auxílios</strong><small>Alimentação, transporte, saúde e família</small></span><svg class="icon chevron"><use href="#i-chevron"></use></svg></summary><div class="breakdown-body"><div class="detail-row"><span>Auxílio-alimentação</span><strong id="totalAuxilioAlimentacao">—</strong></div><div class="detail-row"><span>Auxílio-transporte</span><strong id="totalAuxilioTransporte">—</strong></div><div class="detail-row"><span>Auxílio-saúde</span><strong id="totalAuxilioSaude">—</strong></div><div class="detail-row"><span>Auxílio-creche</span><strong id="totalAuxilioCreche">—</strong></div><div class="detail-row"><span>Auxílio a filho com deficiência</span><strong id="totalAuxilioFilhoDeficiencia">—</strong></div><div class="detail-row subtotal"><span>Total de auxílios</span><strong class="totalAuxilios">—</strong></div></div></details>
+<details class="panel breakdown"><summary><span><strong>Detalhamento dos adicionais</strong><small>Qualificação e tempo de serviço</small></span><svg class="icon chevron"><use href="#i-chevron"></use></svg></summary><div class="breakdown-body"><div class="detail-row"><span>Adicional de qualificação</span><strong id="totalAdicionalQualificacao">—</strong></div><div class="detail-row"><span>Adicional de tempo de serviço</span><strong id="totalAdicionalTempoServico">—</strong></div><div class="detail-row subtotal"><span>Total de adicionais</span><strong class="totalAdicionais">—</strong></div></div></details>
+<details class="panel breakdown"><summary><span><strong>Detalhamento dos descontos</strong><small>IAMSPE, previdência e IRPF</small></span><svg class="icon chevron"><use href="#i-chevron"></use></svg></summary><div class="breakdown-body"><div class="detail-row"><span>IAMSPE</span><strong id="totalDescontoIamspe">—</strong></div><div class="detail-row"><span>Contribuição previdenciária <small id="regimePrevidenciaResultado">Conforme regime selecionado</small></span><strong id="totalContribuicaoPrevidenciaria">—</strong></div><div class="detail-row"><span>Imposto de Renda</span><strong id="totalIRPF">—</strong></div><div class="detail-row subtotal"><span>Total de descontos</span><strong class="totalDescontos">—</strong></div></div></details>
+<div class="notice"><svg class="icon"><use href="#i-info"></use></svg><div><strong>Importante sobre a simulação</strong><p>Os valores consideram um mês completo de trabalho e não representam a primeira remuneração. O líquido estimado inclui os auxílios e adicionais, conforme a metodologia original da calculadora. Os resultados são informativos.</p><small>Parâmetros informativos; confira a vigência dos atos normativos. <span id="dataReferencia"></span></small></div></div>
+</div>
+</section>
+</div>
+</main>
+<footer class="rt-footer"><div class="rt-shell rt-footer-inner"><div><strong>Remunera<span>TJ</span></strong><p>Simuladores independentes de remuneração do TJSP</p><small>Ferramenta informativa, sem vínculo institucional com o Tribunal.</small></div><div class="rt-credits"><p>Desenvolvido por Jonatas Calefi dos Santos</p><a href="mailto:jonatasklfsantos@outlook.com">jonatasklfsantos@outlook.com</a></div></div></footer>
+<!-- O script da apuração do IRPF já era uma dependência compartilhada no projeto original. -->
+<script src="../shared/js/calculo.js"></script>
+<!-- Fallback de compatibilidade: executado apenas quando o módulo compartilhado não existir. -->
+<script src="./js/irpf-compat.js"></script>
+<script src="./js/tabelas.js"></script>
+<script src="./js/calculo.js"></script>
+<script src="./js/interface.js"></script>
+</body>
+</html>

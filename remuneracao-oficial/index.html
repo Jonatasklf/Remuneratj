@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="#7e1e29" name="theme-color"/><meta content="Simulador independente da remuneração de Oficial de Justiça do TJSP. Vencimentos, RETEJ, quinquênios, auxílios, descontos e indenizações por diligências informadas pelo usuário." name="description"/><title>Oficial de Justiça | RemuneraTJ</title><link href="../assets/favicon.svg" rel="icon" type="image/svg+xml"/><link href="./css/oficial.css" rel="stylesheet"/><link href="../shared/css/simuladores.css" rel="stylesheet"/></head>
+<body class="rt-calculator rt-oficial"><svg aria-hidden="true" class="icon-definitions" xmlns="http://www.w3.org/2000/svg">
+<symbol id="i-calc" viewbox="0 0 24 24"><rect height="20" rx="2" width="14" x="5" y="2"></rect><path d="M8 6h8M8 10h2m4 0h2M8 14h2m4 0h2M8 18h2m4 0h2"></path></symbol>
+<symbol id="i-wallet" viewbox="0 0 24 24"><rect height="15" rx="3" width="18" x="3" y="5"></rect><path d="M3 9h18M16 14h3M7 5V3h11"></path></symbol>
+<symbol id="i-user" viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></symbol>
+<symbol id="i-heart" viewbox="0 0 24 24"><path d="M20.8 8.5c0 4.7-8.8 10.4-8.8 10.4S3.2 13.2 3.2 8.5a4.7 4.7 0 0 1 8.8-2.3 4.7 4.7 0 0 1 8.8 2.3Z"></path></symbol>
+<symbol id="i-shield" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-4"></path></symbol>
+<symbol id="i-info" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6m0-10v.1"></path></symbol>
+<symbol id="i-chevron" viewbox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></symbol>
+<symbol id="i-refresh" viewbox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5"></path><path d="M5.7 9A7 7 0 0 1 17.5 6L20 12M4 12l2.5 6A7 7 0 0 0 18.3 15"></path></symbol>
+<symbol id="i-copy" viewbox="0 0 24 24"><rect height="12" rx="2" width="12" x="8" y="8"></rect><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path></symbol>
+<symbol id="i-print" viewbox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4V9h16v9h-2"></path><path d="M6 14h12v7H6zM16 12h.01"></path></symbol>
+<symbol id="i-check" viewbox="0 0 24 24"><path d="m5 12 4 4 10-10"></path></symbol>
+<symbol id="i-arrow" viewbox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"></path></symbol>
+</svg>
+<header class="rt-header"><div class="rt-shell rt-header-inner">
+<a aria-label="RemuneraTJ — página inicial" class="rt-brand" href="../index.html">
+<span aria-hidden="true" class="rt-brand-mark">TJ</span><span class="rt-brand-name">Remunera<span>TJ</span><small>SIMULADOR DE REMUNERAÇÃO</small></span>
+</a><div class="rt-header-status"><span class="rt-status-dot"></span><span>Projeto independente · Não oficial</span></div>
+</div></header>
+<main class="rt-main wrap"><nav aria-label="Escolha da calculadora" class="rt-careers"><a href="../index.html">Início</a><a data-career="escrevente" href="../remuneracao-tjsp/index.html">Escrevente</a><a aria-current="page" data-career="oficial" href="../remuneracao-oficial/index.html">Oficial de Justiça</a></nav>
+<section class="rt-hero"><div><div class="rt-eyebrow"><span class="rt-eyebrow-dot"></span> CARREIRAS · OFICIAL DE JUSTIÇA</div><h1>Seu salário, <span>sem complicação.</span></h1><p>Calcule a remuneração mensal habitual e confira, em quadro separado, as diligências presenciais e remotas e a antecipação indenizatória.</p></div><aside class="rt-hero-note"><span aria-hidden="true" class="rt-note-symbol">✓</span><span><strong>Salário e diligências separados</strong><small>Indenizações não entram na base de IRRF ou previdência da simulação.</small></span></aside></section>
+<div class="app-grid">
+<section aria-labelledby="form-title" class="form-side"><div class="section-caption"><h2 id="form-title">Dados para o cálculo</h2><span>01 / PARÂMETROS</span></div>
+<form id="ojForm" novalidate="">
+<div class="panel section"><div class="panel-head"><span class="mini-icon"><svg aria-hidden="true" class="icon"><use href="#i-user"></use></svg></span><div><h3>Carreira e vencimentos</h3><p>Selecione seu padrão e adicionais permanentes</p></div></div>
+<div class="fields"><div class="field span2"><label for="padrao">Padrão de vencimento</label><select id="padrao" name="padrao"></select><small>A referência 7 da escala é exclusiva desta carreira.</small></div>
+<div class="field"><label for="quinquenios">Quinquênios completos</label><select id="quinquenios" name="quinquenios"></select></div>
+<div class="field"><label for="aq">Adicional de qualificação</label><select id="aq" name="aq"><option value="0">Não possuo (0%)</option><option value="0.05">5% — graduação / título</option><option value="0.075">7,5% — pós-graduação</option><option value="0.10">10% — título reconhecido</option><option value="0.125">12,5% — título reconhecido</option></select></div></div>
+<div class="inline-info"><span>◈</span><div>O <b>RETEJ de 31,74%</b> já é considerado automaticamente. A sexta-parte é aplicada após quatro quinquênios completos.</div></div></div>
+<div aria-labelledby="auxiliosTitulo" class="panel section"><div class="panel-head"><span class="mini-icon"><svg aria-hidden="true" class="icon"><use href="#i-heart"></use></svg></span><div><h3 id="auxiliosTitulo">Auxílios e benefícios</h3><p>Informe os dias trabalhados e os benefícios aplicáveis, como no simulador de Escrevente.</p></div></div>
+<div class="fields">
+<div class="field"><label for="alimentacao">Dias de auxílio-alimentação</label><input id="alimentacao" max="31" min="0" required="" step="1" type="number" value="20"/><small>Presencial ou remoto</small></div>
+<div class="field"><label for="transporte">Dias de auxílio-transporte</label><input id="transporte" max="31" min="0" required="" step="1" type="number" value="20"/><small>Apenas em trabalho presencial</small></div>
+<div class="field span2"><span class="field-label">Seu regime de trabalho</span><div aria-label="Atalhos de regime de trabalho" class="segmented-regime" role="group"><button aria-pressed="true" class="regime-option active" data-regime="presencial" type="button">Presencial</button><button aria-pressed="false" class="regime-option" data-regime="remoto" type="button">Remoto</button><button aria-pressed="false" class="regime-option" data-regime="personalizado" type="button">Personalizado</button></div><small>O atalho modifica apenas os dias de transporte; os demais campos podem ser ajustados livremente. Não recalcula automaticamente.</small></div>
+<div class="field span2"><label for="faixaSaude">Faixa etária do auxílio-saúde</label><select id="faixaSaude"><option value="0">Sem auxílio-saúde</option><option value="1">Até 18 anos</option><option value="2">De 19 a 23 anos</option><option selected="" value="3">De 24 a 28 anos</option><option value="4">De 29 a 33 anos</option><option value="5">De 34 a 38 anos</option><option value="6">De 39 a 43 anos</option><option value="7">De 44 a 48 anos</option><option value="8">De 49 a 53 anos</option><option value="9">De 54 a 58 anos</option><option value="10">59 anos ou mais</option></select></div>
+<div class="field"><label for="creche">Filhos para auxílio-creche</label><input id="creche" max="20" min="0" step="1" type="number" value="0"/></div>
+<div class="field"><label for="filhoDeficiencia">Filhos com deficiência</label><input id="filhoDeficiencia" max="20" min="0" step="1" type="number" value="0"/></div>
+<div class="field span2"><label for="saudeMajorada">Acréscimo de 50% no auxílio-saúde por deficiência ou doença grave?</label><select id="saudeMajorada"><option selected="" value="1">Não</option><option value="1.5">Sim</option></select></div>
+</div></div>
+<details class="panel fold iamspe-panel" open=""><summary><span class="mini-icon"><svg aria-hidden="true" class="icon"><use href="#i-shield"></use></svg></span><span><strong>IAMSPE e dependentes</strong><small>Contribuições do servidor, beneficiários e agregados</small></span><span class="optional-label">OPCIONAL</span><span class="chevron">⌄</span></summary>
+<div class="fold-body"><p class="fold-explanation">Indique se o servidor contribui para o IAMSPE e, quando houver, informe os beneficiários e agregados. Todos os descontos aparecerão separadamente no resultado.</p><div class="fields">
+<div class="field span2"><label for="iamspe">IAMSPE — situação do servidor</label><select id="iamspe"><option selected="" value="0.02">Sim (menos de 59 anos)</option><option value="0.03">Sim (a partir de 59 anos)</option><option value="0">Não</option></select></div>
+<div class="field"><label for="dependentesMenor">Beneficiários abaixo de 59 anos</label><input id="dependentesMenor" max="20" min="0" step="1" type="number" value="0"/></div>
+<div class="field"><label for="dependentesMaior">Beneficiários a partir de 59 anos</label><input id="dependentesMaior" max="20" min="0" step="1" type="number" value="0"/></div>
+<div class="field"><label for="agregadosMenor">Agregados abaixo de 59 anos</label><input id="agregadosMenor" max="20" min="0" step="1" type="number" value="0"/></div>
+<div class="field"><label for="agregadosMaior">Agregados a partir de 59 anos</label><input id="agregadosMaior" max="20" min="0" step="1" type="number" value="0"/></div>
+</div></div></details>
+<details class="panel fold previdencia-panel" open=""><summary><span class="mini-icon"><svg aria-hidden="true" class="icon"><use href="#i-shield"></use></svg></span><span><strong>Previdência e imposto de renda</strong><small>O enquadramento previdenciário varia conforme o vínculo</small></span><span class="chevron">⌄</span></summary><div class="fold-body fields">
+<div class="field span2"><label for="modoPrevidencia">Regime de contribuição ao RPPS</label><select id="modoPrevidencia"><option value="integral">RPPS sobre a base integral · vínculo antigo</option><option value="teto">RPPS limitado ao teto do INSS · previdência complementar</option><option value="manual">Informar contribuição mensal manualmente</option></select><small>Confira o ingresso no TJSP, eventual migração de regime e a base efetiva no contracheque.</small></div>
+<div class="field span2" hidden="" id="manualBox"><label for="previdenciaManual">Contribuição previdenciária informada (R$)</label><input id="previdenciaManual" max="99999" min="0" step="0.01" type="number" value="0"/></div>
+<div class="field span2"><label for="dependentesIr">Dependentes para IRRF</label><input id="dependentesIr" max="20" min="0" step="1" type="number" value="0"/></div>
+</div></details>
+<div aria-labelledby="indemFormTitle" class="panel section indemnity-form"><div class="panel-head"><span class="mini-icon indemnity-icon"><svg aria-hidden="true" class="icon"><use href="#i-wallet"></use></svg></span><div><h3 id="indemFormTitle">Diligências e antecipação</h3><p>Indenizações por mandados presenciais e remotos, separadas do salário</p></div></div>
+<div class="indem-note"><strong>Parâmetros oficiais cadastrados · <span id="competenciaIndenizacao">09/2026</span></strong><span>O valor da cota gratuita e a antecipação são fixados pelo administrador no Atualizador RemuneraTJ. Eles não são editáveis durante a simulação.</span></div>
+<div class="indem-heading"><span class="indem-heading-number">A</span><div><strong>Mandados gratuitos</strong><small>Valor por cota definido pelo administrador · <b id="valorGratuitaExibido">R$ 103,16</b></small></div></div>
+<div class="indem-work-modes">
+<div class="indem-mode"><div class="mode-title"><span class="mode-icon">↗</span><strong>Com deslocamento</strong></div><div class="field"><label for="quantidadeGratuita">Cotas gratuitas presenciais reconhecidas</label><input id="quantidadeGratuita" max="5000" min="0" step="1" type="number" value="0"/><small>Informe as cotas apuradas no mapa, já considerando agrupamentos.</small></div></div>
+<div class="indem-mode remote"><div class="mode-title"><span class="mode-icon">⌁</span><strong>Cumprimento remoto</strong></div><div class="field"><label for="quantidadeGratuitaRemota">Mandados gratuitos remotos (meios próprios)</label><input aria-describedby="regraRemotoGratuito" id="quantidadeGratuitaRemota" max="50000" min="0" step="1" type="number" value="0"/><small id="regraRemotoGratuito">Cada 10 mandados elegíveis formam 1 cota. Lotes incompletos não geram cota nesta simulação.</small></div></div>
+</div>
+<p class="indem-hint"><strong>Exemplo:</strong> 27 mandados gratuitos remotos equivalem a 2 cotas; 7 ficam sem cota neste mês. Regra do art. 1.037, II, NSCGJ, para atos praticados com meios próprios.</p>
+<div class="indem-heading"><span class="indem-heading-number">B</span><div><strong>Mandados pagos</strong><small>Ressarcimento por mandado, deduzidos os custos administrativos</small></div></div>
+<div class="indem-work-modes">
+<div class="indem-mode"><div class="mode-title"><span class="mode-icon">↗</span><strong>Com deslocamento</strong></div><div class="field"><label for="quantidadePaga">Mandados pagos presenciais ressarcíveis</label><input id="quantidadePaga" max="5000" min="0" step="1" type="number" value="0"/></div><div class="field"><label for="valorPaga">Valor unitário diferente do padrão? (R$)</label><input aria-describedby="pagaInfo" autocomplete="off" id="valorPaga" inputmode="decimal" placeholder="Automático" type="text" value=""/><small>Em branco: <b id="valorPagaPadrao">R$ 109,50</b> por mandado. Preencha somente se o mapa tiver outro valor.</small></div></div>
+<div class="indem-mode remote"><div class="mode-title"><span class="mode-icon">⌁</span><strong>Cumprimento remoto</strong></div><div class="field"><label for="quantidadePagaRemota">Mandados pagos remotos ressarcíveis</label><input id="quantidadePagaRemota" max="5000" min="0" step="1" type="number" value="0"/><small>Unitário calculado: <b id="valorPagaRemotaExibido">R$ 36,50</b>, sujeito ao mapa de ressarcimento.</small></div></div>
+</div>
+<div class="indem-rules" id="pagaInfo"><span>UFESP cadastrada: <b id="valorUfespExibido">R$ 38,42</b></span><span>Despesas administrativas: <b id="retencaoExibida">5%</b></span><span>Presencial: 3 UFESPs</span><span>Remoto: 1 UFESP</span></div>
+<small class="indem-hint">O valor de recolhimento da guia não é igual ao ressarcimento ao Oficial. O cálculo usa os parâmetros administrativos vigentes desde maio de 2026. <a href="https://portal.tjsp.jus.br/IndicesTaxasJudiciarias/DespesasProcessuais/DiligenciaOficiaisJustica?f=4" rel="noopener noreferrer" target="_blank">Tabela TJSP ↗</a></small>
+<div class="indem-heading"><span class="indem-heading-number">C</span><div><strong>Antecipação mensal</strong><small>Valor fixo · sem multiplicação</small></div></div>
+<div class="fields"><div class="field span2"><span class="field-label">Valor da antecipação</span><div aria-label="Antecipação fixada pelo administrador" class="fixed-parameter"><strong id="valorAntecipacaoExibido">R$ 2.755,71</strong><small>Definido pelo atualizador interno</small></div></div></div>
+<label class="indem-check"><input checked="" id="incluirAntecipacao" type="checkbox"/><span>Incluir a antecipação neste mês, se houver direito ao pagamento</span></label>
+<small class="indem-hint">A antecipação é adicionada uma única vez, quando selecionada, e pode ser creditada em período diferente das diligências.</small>
+<div class="inline-info"><span>◈</span><div>Estas parcelas aparecem <b>separadas do salário</b> e não integram IRRF, RPPS ou IAMSPE nesta simulação. O total é uma estimativa e <b>não substitui a conferência dos mapas</b>; diligências agrupadas, glosas e ajustes podem alterar as cotas.</div></div>
+</div>
+<div class="form-actions"><button class="btn reset" type="reset">Restaurar campos</button><button class="btn calculate" type="submit">Calcular remuneração <span>→</span></button></div>
+<p aria-live="polite" class="form-status" id="formStatus" role="status">Preencha os dados e clique em <b>Calcular remuneração</b>.</p>
+</form></section>
+<section aria-labelledby="result-title" class="results-side"><div class="section-caption"><h2 id="result-title">Sua simulação</h2><span>02 / RESULTADO</span></div>
+<div class="results-inner"><div class="state" id="resultStatus">Aguardando cálculo</div>
+<div class="salary-card">
+<div class="salary-card-top"><span class="salary-category"><svg aria-hidden="true" class="icon"><use href="#i-wallet"></use></svg> LÍQUIDO ESTIMADO</span><span class="salary-period">por mês</span></div>
+<strong class="salary-value" id="liquido">—</strong><p>Salário habitual e auxílios, sem somar diligências ou antecipação.</p>
+<div class="salary-divider"></div><div class="salary-metrics"><div><span>Remuneração bruta</span><strong id="bruto">—</strong></div><div><span>Total de descontos</span><strong id="descontos">—</strong></div></div>
+<div class="salary-composition"><div aria-label="Distribuição das parcelas positivas" class="composition-bar" role="img"><span class="bar-part wages" id="ojBarVencimentos"></span><span class="bar-part benefits" id="ojBarAuxilios"></span></div><div class="legend"><span><i class="legend-dot wages"></i> Vencimentos</span><span><i class="legend-dot benefits"></i> Auxílios</span></div></div>
+</div>
+<div class="error" hidden="" id="errorBox" role="alert"></div>
+<div class="rt-result-components"><div class="panel summary-panel">
+<div class="panel-heading compact"><div><h3>Composição do salário</h3><p>Entenda cada parcela da sua remuneração.</p></div></div>
+<div class="summary-rows">
+<div class="summary-row"><span><span class="summary-symbol plus">+</span> Vencimentos e adicionais</span><strong id="ojResumoVencimentos">—</strong></div>
+<div class="summary-row"><span><span class="summary-symbol plus">+</span> Auxílios</span><strong id="ojResumoAuxilios">—</strong></div>
+<div class="summary-row discount"><span><span class="summary-symbol minus">−</span> Descontos</span><strong id="ojResumoDescontos">—</strong></div>
+<div class="summary-row total"><span>Total líquido estimado</span><strong id="liquidoRodape">—</strong></div>
+</div>
+<div class="result-actions"><button class="btn btn-outline" disabled="" id="copyButton" type="button">Copiar resumo</button><button class="btn btn-outline" disabled="" id="printButton" type="button">Imprimir</button></div>
+</div>
+<details class="panel breakdown" open=""><summary><span><strong>Detalhamento da remuneração</strong><small>Vencimentos, adicionais, auxílios e descontos</small></span><span aria-hidden="true">⌄</span></summary><div class="rows" id="detalhes"><div class="placeholder">Os detalhes aparecerão após o cálculo.</div></div></details></div>
+<div aria-labelledby="indemResultTitle" class="panel indemnity-results"><div class="result-heading"><div><h3 id="indemResultTitle">Indenizações por diligências</h3><p>Calculadas à parte do salário e sem incidência de IRRF na simulação</p></div><span class="top-chip">SEPARADO</span></div>
+<div class="indem-kpis"><div><small>Indenizações estimadas</small><strong id="totalIndenizacoes">—</strong></div><div><small>Líquido salarial + indenizações</small><strong id="totalRecebimentos">—</strong></div></div>
+<div class="rows" id="detalhesIndenizacoes"><div class="placeholder">Os valores das diligências aparecerão após o cálculo.</div></div>
+<p class="indem-explanation">O segundo total é uma <b>soma estimativa de recebimentos</b>, não o salário líquido. A antecipação pode ser creditada em data diferente; verifique a competência e a elegibilidade. Confira cotas e eventuais glosas no mapa do TJSP.</p></div>
+<div class="disclaimer"><b>Como interpretar</b><p>A estimativa contempla apenas remuneração habitual e auxílios regulares. Não entram plantões, férias e licenças indenizadas, 13º salário, atrasados, ajustes retroativos, reposições ou empréstimos consignados. Diligências e antecipação ficam em quadro próprio, sem alterar as bases tributárias ou o líquido salarial. São usados os parâmetros remuneratórios de 2026 e os auxílios compartilhados com Escrevente.</p><p>O resultado é informativo e não substitui a folha oficial. Para vínculos antigos e diferenças de incidência tributária, confira as rubricas de cada holerite.</p><a href="https://www.al.sp.gov.br/repositorio/legislacao/lei.complementar/2010/compilacao-lei.complementar-1111-25.05.2010.html" rel="noopener noreferrer" target="_blank">Legislação do RETEJ e adicionais ↗</a></div>
+</div></section></div></main>
+<footer class="rt-footer"><div class="rt-shell rt-footer-inner"><div><strong>Remunera<span>TJ</span></strong><p>Simuladores independentes de remuneração do TJSP</p><small>Ferramenta informativa, sem vínculo institucional com o Tribunal.</small></div><div class="rt-credits"><p>Desenvolvido por Jonatas Calefi dos Santos</p><a href="mailto:jonatasklfsantos@outlook.com">jonatasklfsantos@outlook.com</a></div></div></footer>
+<script src="../remuneracao-tjsp/js/tabelas.js"></script><script src="./js/calculo-oficial.js"></script><script src="./js/interface-oficial.js"></script></body></html>
