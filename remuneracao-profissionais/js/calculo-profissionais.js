@@ -53,7 +53,8 @@
     const base=cents(num(linha.remuneracao,'vencimento básico')-gaj);
     if (base < 0) throw new Error('Salário-base inconsistente com a GAJ cadastrada.');
     const basica=cents(base+gaj); // reproduz exatamente o padrão oficial
-    const aqTaxa=num(entrada.aq,'adicional de qualificação',0,.25);
+    // Campo 'Selecionar' em branco equivale a nenhum AQ; somente título reconhecido gera adicional.
+    const aqTaxa=entrada.aq === '' ? 0 : num(entrada.aq,'adicional de qualificação',0,.25);
     // Os holerites de 2025 e 2026 demonstram truncamento do AQ ao centavo.
     const aq=truncCents(basica*aqTaxa);
     const q=count(entrada.quinquenios,'quinquênios',12);

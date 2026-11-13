@@ -165,5 +165,14 @@
   });
   syncPrevidencia();
   syncPreset();
+  // A formação fica inicialmente sem seleção, inclusive ao voltar à página
+  // com o histórico do navegador. Não é feito nenhum cálculo automático.
+  window.addEventListener('pageshow', () => {
+    const campo = document.getElementById('formacaoAcademica');
+    if (campo && campo.value !== '') {
+      campo.value = '';
+      setPending();
+    }
+  });
   setPending();
 })();

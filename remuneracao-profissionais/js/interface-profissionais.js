@@ -54,5 +54,14 @@
   }catch(error){$('errorBox').textContent=error.message||'Não foi possível calcular.';$('errorBox').hidden=false;}});
   $('copyButton').addEventListener('click',()=>{if(!last)return;const nome=last.cargo==='psicologo'?'Psicólogo Judiciário':'Assistente Social Judiciário';const out=['RemuneraTJ · '+nome,'Padrão: '+last.padrao,'Bruto: '+format(last.total.bruto),'Descontos: '+format(last.total.descontos),'Empréstimo consignado: '+format(last.itensDesconto.emprestimoConsignado),'Outros descontos em folha: '+format(last.itensDesconto.outrosDescontos),'Líquido estimado: '+format(last.total.liquido),'Sem SPPREVCOM ou verbas eventuais.'].join('\n');const cp=navigator.clipboard?.writeText?.(out);if(cp)cp.catch(()=>window.prompt('Copie o resumo:',out));else window.prompt('Copie o resumo:',out);});
   $('printButton').addEventListener('click',()=>{if(last)window.print();});
+  // A formação fica inicialmente sem seleção, inclusive ao voltar à página
+  // com o histórico do navegador. Não é feito nenhum cálculo automático.
+  window.addEventListener('pageshow', () => {
+    const campo = document.getElementById('aq');
+    if (campo && campo.value !== '') {
+      campo.value = '';
+      pending();
+    }
+  });
   pending();
 })();

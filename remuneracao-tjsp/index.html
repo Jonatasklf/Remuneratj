@@ -51,7 +51,7 @@
 <div class="field-grid">
 <div class="field full"><label for="cargo">Cargo em comissão ou função gratificada</label><select id="cargo"><option value="">Nenhum — Escrevente</option><option value="ajc">Assistente Judiciário</option><option value="ajur">Assistente Jurídico</option><option value="csj">Chefe de Seção Judiciário</option><option value="csjGab">Chefe de Seção Judiciário - Gabinete</option><option value="coord">Coordenador</option><option value="super">Supervisor</option><option value="etjGab">Escrevente - Gabinete (2º Grau)</option><option value="etjGabUpj">Escrevente - Gabinete (UPJ)</option><option value="estenotipista">Estenotipista</option><option value="esadm">Gratificação de Setores Administrativos</option><option value="eqgab">Gratificação de Equipe de Apoio aos Gabinetes</option></select></div>
 <div class="field"><label for="padraoVencimento">Padrão de vencimento</label><select id="padraoVencimento"><option value="5A-CE">5A-CE</option><option value="5B-CE">5B-CE</option><option value="5C-CE">5C-CE</option><option value="5D-CE">5D-CE</option><option value="5E-CE">5E-CE</option><option value="5F-CE">5F-CE</option><option value="5G-CE">5G-CE</option><option value="5H-CE">5H-CE</option><option value="5I-CE">5I-CE</option><option value="5J-CE">5J-CE</option><option value="5K-CE">5K-CE</option><option value="5L-CE">5L-CE</option><option value="5M-CE">5M-CE</option><option value="5N-CE">5N-CE</option><option value="5O-CE">5O-CE</option><option value="5P-CE">5P-CE</option><option value="5Q-CE">5Q-CE</option><option value="5R-CE">5R-CE</option></select><small>Progressão na carreira</small></div>
-<div class="field"><label for="formacaoAcademica">Formação acadêmica</label><select id="formacaoAcademica"><option value="0">Ensino Médio</option><option value="0.075">Ensino Superior</option><option value="0.1">Pós-graduação (lato sensu)</option><option value="0.15">Mestrado</option><option value="0.2">Doutorado</option></select><small>Para o adicional de qualificação</small></div>
+<div class="field"><label for="formacaoAcademica">Formação acadêmica</label><select id="formacaoAcademica" autocomplete="off"><option value="" selected>Selecionar</option><option value="0.075">Ensino Superior (7,5%)</option><option value="0.1">Especialização / Pós-graduação (10%)</option><option value="0.15">Mestrado (15%)</option><option value="0.2">Doutorado (20%)</option></select><small>Sem seleção, o adicional de qualificação é 0%.</small></div>
 <div class="field"><label for="quinquenios">Quinquênios</label><input id="quinquenios" inputmode="numeric" max="20" min="0" step="1" type="number" value="0"/><small>Um quinquênio a cada 5 anos de serviço</small></div>
 <div class="field"><label for="dependentes">Dependentes para IRPF</label><input id="dependentes" inputmode="numeric" max="20" min="0" step="1" type="number" value="0"/><small>Dependentes para dedução no imposto</small></div>
 </div>
@@ -138,6 +138,6 @@
 <script src="./js/irpf-compat.js"></script>
 <script src="./js/tabelas.js"></script>
 <script src="./js/calculo.js"></script>
-<script src="./js/interface.js"></script>
+<script src="./js/interface.js?v=aq-20261113"></script>
 </body>
 </html>

@@ -84,5 +84,14 @@
  'Consignados e outros descontos considerados somente quando informados. Sem plantões e outras verbas eventuais. Conferir mapa de ressarcimento.'
  ].join('\n');const copy=navigator.clipboard?.writeText?.(out);if(copy)copy.catch(()=>{window.prompt('Copie o resumo:',out)});else window.prompt('Copie o resumo:',out);});
  $('printButton').addEventListener('click',()=>{if(last)window.print();});
+  // A formação fica inicialmente sem seleção, inclusive ao voltar à página
+  // com o histórico do navegador. Não é feito nenhum cálculo automático.
+  window.addEventListener('pageshow', () => {
+    const campo = document.getElementById('aq');
+    if (campo && campo.value !== '') {
+      campo.value = '';
+      pending();
+    }
+  });
  pending();
 })();
