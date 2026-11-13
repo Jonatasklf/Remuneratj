@@ -23,8 +23,8 @@
     const abatimento=bruto<=5000?imposto:(bruto<=7350?Math.min(imposto,Math.max(0,cents(978.62-.133145*bruto))):0);
     return cents(Math.max(0,imposto-abatimento));
   }
-  // Somente o administrador modifica os valores fixos no arquivo tabelas.js.
-  // O usuário comum fornece apenas quantidades (e o preço da diligência paga).
+  // Cada servidor informa as cotas unitárias e a antecipação do seu mês.
+  // Sem valores persistidos no servidor: a simulação usa apenas os campos preenchidos.
   function moedaInformada(x, nome) {
     if (typeof x === 'number') return cents(valid(x, nome, 0, 1e7));
     let texto = String(x ?? '').trim().replace(/R\$/gi, '').replace(/\s/g, '');
@@ -39,15 +39,9 @@
     if (!/^\d+(?:\.\d{1,2})?$/.test(texto)) throw Error('Valor monetário inválido para ' + nome + '. Use, por exemplo, 103,16.');
     return cents(valid(Number(texto), nome, 0, 1e7));
   }
-  // O valor da cota gratuita e da antecipação é administrado no projeto.
-  // Mandados gratuitos remotos com meios próprios: 1 cota por lote COMPLETO de 10.
-  // Pagos: 3 UFESPs (presencial) ou 1 UFESP (remoto), menos despesas administrativas.
-  function indenizacoesInformadas(entrada, parametros) {
-    if (!parametros || typeof parametros !== 'object') throw Error('Parâmetros de diligências ausentes das tabelas.');
-    const gratuita = moedaInformada(parametros.valorCotaGratuita, 'cota gratuita');
-    const antecipacaoCadastrada = moedaInformada(parametros.valorAntecipacao, 'antecipação');
-    const ufesp = moedaInformada(parametros.valorUfesp ?? 38.42, 'UFESP');
-    const retencao = valid(parametros.retencaoAdministrativa ?? 0.05, 'retenção administrativa', 0, 1);
+  // Remotos gratuitos com meios próprios: uma cota por lote completo de 10.
+  // Valores pagos são os ressarcimentos efetivos já líquidos de retenção administrativa.
+  function indenizacoesInformadas(entrada) {
     const inteiro = (valor, nome, maximo=5000) => {
       const n=valid(valor ?? 0, nome, 0, maximo);
       if(!Number.isInteger(n))throw Error('A quantidade de ' + nome + ' precisa ser inteira.');
@@ -59,27 +53,40 @@
     const mandadosPagosRemotos = inteiro(entrada.quantidadePagaRemota, 'mandados pagos remotos');
     const cotasGratuitasRemotas = Math.floor(mandadosGratuitosRemotos / 10);
     const mandadosSemCota = mandadosGratuitosRemotos % 10;
-    const valorPagoPresencialPadrao = cents(ufesp * 3 * (1-retencao));
-    const valorPagoRemoto = cents(ufesp * (1-retencao));
-    const alteracaoValor = String(entrada.valorPaga ?? '').trim();
-    // Valor manual opcional: preserva a possibilidade de conferir mapas com valores diferentes.
-    const unitarioPresencial = !alteracaoValor || /^0(?:[,.]0{1,2})?$/.test(alteracaoValor)
-      ? valorPagoPresencialPadrao : moedaInformada(alteracaoValor, 'cota paga presencial');
-    if (mandadosPagosPresenciais > 0 && unitarioPresencial <= 0) throw Error('Ressarcimento presencial inválido.');
-    const incluirAntecipacao = entrada.incluirAntecipacao !== false && entrada.incluirAntecipacao !== 'false';
+    const dinheiroOuZero = (valor, nome, exigido) => {
+      if (String(valor ?? '').trim()==='') {
+        if (exigido) throw Error('Informe o valor atualizado de ' + nome + ' (R$).');
+        return 0;
+      }
+      const n=moedaInformada(valor,nome);
+      if (exigido && n<=0) throw Error('O valor de ' + nome + ' deve ser maior que zero.');
+      return n;
+    };
+    const gratuita = dinheiroOuZero(entrada.valorGratuita, 'cada cota gratuita', cotasGratuitasPresenciais+cotasGratuitasRemotas>0);
+    const unitarioPresencial = dinheiroOuZero(entrada.valorPaga, 'cada mandado pago presencial', mandadosPagosPresenciais>0);
+    const unitarioRemoto = dinheiroOuZero(entrada.valorPagaRemota, 'cada mandado pago remoto', mandadosPagosRemotos>0);
+    const incluirAntecipacao = entrada.incluirAntecipacao === true || entrada.incluirAntecipacao === 'true';
+    const antecipacaoCadastrada = dinheiroOuZero(entrada.valorAntecipacao, 'antecipação', incluirAntecipacao);
     const antecipacao = incluirAntecipacao ? antecipacaoCadastrada : 0;
-    const gratuitaPresencial = { unitario:gratuita, quantidade:cotasGratuitasPresenciais, total:cents(gratuita*cotasGratuitasPresenciais) };
-    const gratuitaRemota = { unitario:gratuita, mandados:mandadosGratuitosRemotos, cotas:cotasGratuitasRemotas, restantes:mandadosSemCota, total:cents(gratuita*cotasGratuitasRemotas) };
-    const pagaPresencial = { unitario:unitarioPresencial, quantidade:mandadosPagosPresenciais, personalizada:!!alteracaoValor && !/^0(?:[,.]0{1,2})?$/.test(alteracaoValor), total:cents(unitarioPresencial*mandadosPagosPresenciais) };
-    const pagaRemota = { unitario:valorPagoRemoto, quantidade:mandadosPagosRemotos, total:cents(valorPagoRemoto*mandadosPagosRemotos) };
+    const gratuitaPresencial = {unitario:gratuita, quantidade:cotasGratuitasPresenciais, total:cents(gratuita*cotasGratuitasPresenciais)};
+    const gratuitaRemota = {unitario:gratuita, mandados:mandadosGratuitosRemotos, cotas:cotasGratuitasRemotas, restantes:mandadosSemCota, total:cents(gratuita*cotasGratuitasRemotas)};
+    const pagaPresencial = {unitario:unitarioPresencial, quantidade:mandadosPagosPresenciais, personalizada:true, total:cents(unitarioPresencial*mandadosPagosPresenciais)};
+    const pagaRemota = {unitario:unitarioRemoto, quantidade:mandadosPagosRemotos, total:cents(unitarioRemoto*mandadosPagosRemotos)};
     return {
       gratuita:gratuitaPresencial, gratuitaRemota,
       paga:pagaPresencial, pagaRemota,
       antecipacao, antecipacaoCadastrada, incluirAntecipacao,
-      ufesp, retencao, competencia:parametros.competencia,
+      competencia:'informada pelo servidor',
       total:cents(gratuitaPresencial.total+gratuitaRemota.total+pagaPresencial.total+pagaRemota.total+antecipacao)
     };
   }
+  // Descontos voluntariamente informados: não compõem deduções tributárias.
+  const descontoUsuario = (valor, nome) => {
+    if (valor === '' || valor === null || valor === undefined) return 0;
+    const n = valid(valor, nome, 0, 9999999.99);
+    if (Math.abs(n * 100 - Math.round(n * 100)) > 1e-6) throw Error('Informe reais e centavos em ' + nome + '.');
+    return cents(n);
+  };
   function calcular(entrada,tabelas){
     const o=tabelas?.oficialJustica,a=tabelas?.auxilios,p=tabelas?.previdencia;
     if(!o||!a||!p)throw Error('Tabelas financeiras incompletas.');
@@ -141,9 +148,11 @@
     const deducaoIr=Math.max(deducaoLegal,607.20);
     const baseIr=cents(Math.max(0,remuneracao-deducaoIr));
     const ir=ir2026(remuneracao,baseIr);
-    const descontoTotal=cents(descontoIamspe+descontoAgregados+prev+ir);
+    const emprestimoConsignado=descontoUsuario(entrada.emprestimoConsignado,'empréstimo consignado');
+    const outrosDescontos=descontoUsuario(entrada.outrosDescontos,'outros descontos em folha');
+    const descontoTotal=cents(descontoIamspe+descontoAgregados+prev+ir+emprestimoConsignado+outrosDescontos);
     const bruto=cents(remuneracao+totalAux);
-    const indenizacoes=indenizacoesInformadas(entrada,o.indenizacoes);
+    const indenizacoes=indenizacoesInformadas(entrada);
     const liquidoSalario=cents(bruto-descontoTotal);
     return {
       padrao:entrada.padrao,composicao:{salarioBase,gaj,retej,basica,aq,quinqueniosBase,quinqueniosGaj,sextaParte,remuneracao,aux},
@@ -152,7 +161,7 @@
       total:{bruto,auxilios:totalAux,descontos:descontoTotal,liquido:liquidoSalario},
       indenizacoes,
       recebimentosEstimados:cents(liquidoSalario + indenizacoes.total),
-      itensDesconto:{iamspe:descontoIamspe,agregados:descontoAgregados,beneficiarios:descontoBeneficiarios,agregadosEspecificos:descontoAgregadosEspecificos,previdencia:prev,ir}
+      itensDesconto:{iamspe:descontoIamspe,agregados:descontoAgregados,beneficiarios:descontoBeneficiarios,agregadosEspecificos:descontoAgregadosEspecificos,previdencia:prev,ir,emprestimoConsignado,outrosDescontos}
     };
   }
   global.RemuneraTJOficial={calcular,rpps,ir2026,cents,moedaInformada,indenizacoesInformadas};

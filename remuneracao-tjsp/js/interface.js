@@ -61,13 +61,13 @@
       const num = Number(el.value);
       const minimo = el.min === '' ? -Infinity : Number(el.min);
       const maximo = el.max === '' ? Infinity : Number(el.max);
-      const casasDecimaisValidas = el.id === 'previdenciaManual'
+      const casasDecimaisValidas = ['previdenciaManual','emprestimoConsignado','outrosDescontos'].includes(el.id)
         ? Math.abs(num * 100 - Math.round(num * 100)) < 1e-7
         : Number.isInteger(num);
       return !Number.isFinite(num) || !casasDecimaisValidas || num < minimo || num > maximo;
     });
     if (invalid.length) {
-      errorText('Confira os campos numéricos: quantidades inteiras e contribuição previdenciária em reais e centavos.');
+      errorText('Confira os campos numéricos: quantidades inteiras e valores monetários com até duas casas decimais.');
       invalid[0].setAttribute('aria-invalid', 'true');
       return;
     }
@@ -137,6 +137,8 @@
       'Adicionais: ' + document.querySelector('.totalAdicionais').textContent.trim(),
       'Remuneração bruta: ' + textValue('remuneracaoBruta'),
       'Descontos: ' + document.querySelector('.totalDescontos').textContent.trim(),
+      'Empréstimo consignado: ' + textValue('totalEmprestimoConsignado'),
+      'Outros descontos em folha: ' + textValue('totalOutrosDescontos'),
       'LÍQUIDO ESTIMADO: ' + textValue('remuneracaoLiquida'),
       'Simulação informativa, não oficial. Considera mês completo.'
     ].join('\n');

@@ -1,3 +1,4 @@
+<!doctype html>
 <!DOCTYPE html>
 
 <html lang="pt-BR">
@@ -5,19 +6,18 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="#7e1d28" name="theme-color"/>
-
 <title>Calculadora de Salário de Escrevente TJSP | RemuneraTJ</title>
 <link href="../assets/favicon.svg" rel="icon" type="image/svg+xml"/>
 <link href="./css/base.css" rel="stylesheet"/>
-<link href="./css/tema-tjsp.css" rel="stylesheet"/><link href="../shared/css/simuladores.css" rel="stylesheet"/>  <meta name="description" content="Calcule a remuneração estimada de Escrevente Técnico Judiciário do TJSP: salário-base, gratificações, auxílios, adicionais, IAMSPE, previdência e IRRF.">
-  <link rel="canonical" href="https://jonatasklf.github.io/Remuneratj/remuneracao-tjsp/index.html">
-  <meta property="og:locale" content="pt_BR">
-  <meta property="og:site_name" content="RemuneraTJ">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Calculadora de Salário de Escrevente TJSP | RemuneraTJ">
-  <meta property="og:description" content="Calcule a remuneração estimada de Escrevente Técnico Judiciário do TJSP: salário-base, gratificações, auxílios, adicionais, IAMSPE, previdência e IRRF.">
-  <meta property="og:url" content="https://jonatasklf.github.io/Remuneratj/remuneracao-tjsp/index.html">
-  <meta name="twitter:card" content="summary">
+<link href="./css/tema-tjsp.css" rel="stylesheet"/><link href="../shared/css/simuladores.css" rel="stylesheet"/> <meta content="Calcule a remuneração estimada de Escrevente Técnico Judiciário do TJSP: salário-base, gratificações, auxílios, adicionais, IAMSPE, previdência e IRRF." name="description"/>
+<link href="https://jonatasklf.github.io/Remuneratj/remuneracao-tjsp/index.html" rel="canonical"/>
+<meta content="pt_BR" property="og:locale"/>
+<meta content="RemuneraTJ" property="og:site_name"/>
+<meta content="website" property="og:type"/>
+<meta content="Calculadora de Salário de Escrevente TJSP | RemuneraTJ" property="og:title"/>
+<meta content="Calcule a remuneração estimada de Escrevente Técnico Judiciário do TJSP: salário-base, gratificações, auxílios, adicionais, IAMSPE, previdência e IRRF." property="og:description"/>
+<meta content="https://jonatasklf.github.io/Remuneratj/remuneracao-tjsp/index.html" property="og:url"/>
+<meta content="summary" name="twitter:card"/>
 </head>
 <body class="rt-calculator rt-escrevente">
 <svg aria-hidden="true" class="icon-definitions" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +40,7 @@
 </a><div class="rt-header-status"><span class="rt-status-dot"></span><span>Projeto independente · Não oficial</span></div>
 </div></header>
 <main class="rt-main container" id="inicio">
-<nav aria-label="Escolha da calculadora" class="rt-careers"><a href="../index.html">Início</a><a aria-current="page" data-career="escrevente" href="../remuneracao-tjsp/index.html">Escrevente</a><a data-career="oficial" href="../remuneracao-oficial/index.html">Oficial de Justiça</a></nav>
+<nav aria-label="Escolha da calculadora" class="rt-careers"><a href="../index.html">Início</a><a aria-current="page" data-career="escrevente" href="../remuneracao-tjsp/index.html">Escrevente</a><a data-career="oficial" href="../remuneracao-oficial/index.html">Oficial de Justiça</a><a data-career="profissionais" href="../remuneracao-profissionais/index.html">Psicólogo / Assistente Social</a></nav>
 <section class="rt-hero"><div><div class="rt-eyebrow"><span class="rt-eyebrow-dot"></span> CARREIRAS · ESCREVENTE TÉCNICO JUDICIÁRIO</div><h1>Seu salário, <span>sem complicação.</span></h1><p>Informe sua carreira, auxílios e descontos para calcular a remuneração mensal estimada. Você controla quando o cálculo é atualizado.</p></div><aside class="rt-hero-note"><span aria-hidden="true" class="rt-note-symbol">✓</span><span><strong>Cálculo sob seu controle</strong><small>Os valores só mudam ao clicar em “Calcular remuneração”.</small></span></aside></section>
 <div class="workspace">
 <section aria-labelledby="titulo-config" class="inputs-column">
@@ -94,6 +94,13 @@
 </div>
 </div>
 </details>
+<details class="panel options-panel" id="descontosOpcionaisPanel" open="">
+<summary><span class="section-icon subtle"><svg class="icon"><use href="#i-wallet"></use></svg></span><span class="details-heading"><strong>Outros descontos em folha</strong><small>Valores opcionais informados pelo usuário</small></span><span class="details-tag">OPCIONAL</span><svg class="icon chevron"><use href="#i-chevron"></use></svg></summary>
+<div class="options-content"><p class="field-explanation">Informe o valor mensal descontado em folha. Não altera o IRRF, a previdência nem o IAMSPE; os valores são abatidos somente do líquido estimado. Deixe em zero se não houver.</p>
+<div class="field-grid">
+<div class="field"><label for="emprestimoConsignado">Empréstimo consignado (R$)</label><input id="emprestimoConsignado" inputmode="decimal" type="number" min="0" max="9999999.99" step="0.01" value="0"/><small>Total das parcelas consignadas neste mês</small></div>
+<div class="field"><label for="outrosDescontos">Outros descontos em folha (R$)</label><input id="outrosDescontos" inputmode="decimal" type="number" min="0" max="9999999.99" step="0.01" value="0"/><small>Outros descontos não incluídos nos campos anteriores</small></div>
+</div></div></details>
 <div class="form-actions"><button class="btn btn-secondary" id="resetBtn" type="button"><svg class="icon"><use href="#i-refresh"></use></svg> Restaurar valores</button><button class="btn btn-primary" id="calculateBtn" type="submit">Calcular remuneração <svg class="icon"><use href="#i-arrow"></use></svg></button></div>
 <p aria-live="polite" class="form-autoupdate" id="calculationStatus" role="status">Preencha os campos e clique em <strong>Calcular remuneração</strong> para gerar a simulação.</p>
 </form>
@@ -118,7 +125,7 @@
 <details class="panel breakdown" open=""><summary><span><strong>Detalhamento dos vencimentos</strong><small>Salário-base, progressão e gratificações</small></span><svg class="icon chevron"><use href="#i-chevron"></use></svg></summary><div class="breakdown-body"><div class="detail-row"><span>Valor base</span><strong id="base">—</strong></div><div class="detail-row"><span>Progressão</span><strong id="progressao">—</strong></div><div class="detail-row"><span>GAJ <small>Gratificação de Atividade Judiciária</small></span><strong id="gaj">—</strong></div><div class="detail-row"><span>Gratificação de representação</span><strong id="repr">—</strong></div><div class="detail-row subtotal"><span>Total de vencimentos</span><strong id="vencimentosDetalhe">—</strong></div></div></details>
 <details class="panel breakdown"><summary><span><strong>Detalhamento dos auxílios</strong><small>Alimentação, transporte, saúde e família</small></span><svg class="icon chevron"><use href="#i-chevron"></use></svg></summary><div class="breakdown-body"><div class="detail-row"><span>Auxílio-alimentação</span><strong id="totalAuxilioAlimentacao">—</strong></div><div class="detail-row"><span>Auxílio-transporte</span><strong id="totalAuxilioTransporte">—</strong></div><div class="detail-row"><span>Auxílio-saúde</span><strong id="totalAuxilioSaude">—</strong></div><div class="detail-row"><span>Auxílio-creche</span><strong id="totalAuxilioCreche">—</strong></div><div class="detail-row"><span>Auxílio a filho com deficiência</span><strong id="totalAuxilioFilhoDeficiencia">—</strong></div><div class="detail-row subtotal"><span>Total de auxílios</span><strong class="totalAuxilios">—</strong></div></div></details>
 <details class="panel breakdown"><summary><span><strong>Detalhamento dos adicionais</strong><small>Qualificação e tempo de serviço</small></span><svg class="icon chevron"><use href="#i-chevron"></use></svg></summary><div class="breakdown-body"><div class="detail-row"><span>Adicional de qualificação</span><strong id="totalAdicionalQualificacao">—</strong></div><div class="detail-row"><span>Adicional de tempo de serviço</span><strong id="totalAdicionalTempoServico">—</strong></div><div class="detail-row subtotal"><span>Total de adicionais</span><strong class="totalAdicionais">—</strong></div></div></details>
-<details class="panel breakdown"><summary><span><strong>Detalhamento dos descontos</strong><small>IAMSPE, previdência e IRPF</small></span><svg class="icon chevron"><use href="#i-chevron"></use></svg></summary><div class="breakdown-body"><div class="detail-row"><span>IAMSPE</span><strong id="totalDescontoIamspe">—</strong></div><div class="detail-row"><span>Contribuição previdenciária <small id="regimePrevidenciaResultado">Conforme regime selecionado</small></span><strong id="totalContribuicaoPrevidenciaria">—</strong></div><div class="detail-row"><span>Imposto de Renda</span><strong id="totalIRPF">—</strong></div><div class="detail-row subtotal"><span>Total de descontos</span><strong class="totalDescontos">—</strong></div></div></details>
+<details class="panel breakdown"><summary><span><strong>Detalhamento dos descontos</strong><small>IAMSPE, previdência, IRPF e descontos informados</small></span><svg class="icon chevron"><use href="#i-chevron"></use></svg></summary><div class="breakdown-body"><div class="detail-row"><span>IAMSPE</span><strong id="totalDescontoIamspe">—</strong></div><div class="detail-row"><span>Contribuição previdenciária <small id="regimePrevidenciaResultado">Conforme regime selecionado</small></span><strong id="totalContribuicaoPrevidenciaria">—</strong></div><div class="detail-row"><span>Imposto de Renda</span><strong id="totalIRPF">—</strong></div><div class="detail-row"><span>Empréstimo consignado</span><strong id="totalEmprestimoConsignado">—</strong></div><div class="detail-row"><span>Outros descontos em folha</span><strong id="totalOutrosDescontos">—</strong></div><div class="detail-row subtotal"><span>Total de descontos</span><strong class="totalDescontos">—</strong></div></div></details>
 <div class="notice"><svg class="icon"><use href="#i-info"></use></svg><div><strong>Importante sobre a simulação</strong><p>Os valores consideram um mês completo de trabalho e não representam a primeira remuneração. O líquido estimado inclui os auxílios e adicionais, conforme a metodologia original da calculadora. Os resultados são informativos.</p><small>Parâmetros informativos; confira a vigência dos atos normativos. <span id="dataReferencia"></span></small></div></div>
 </div>
 </section>

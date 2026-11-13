@@ -124,7 +124,19 @@ function calcSallary() {
 	let totalAuxilios =  totalAuxilioAlimentacao + totalAuxilioTransporte + totalAuxilioCreche +
 		totalAuxilioFilhoDeficiencia + totalAuxilioSaude;
 	let remuneracaoBruta = baseCalculoDeducoes + totalAuxilios;
-	let totalDescontos = totalDescontoIamspe + totalContribuicaoPrevidenciaria + totalIRPF
+	// Consignados e outras rubricas lançadas pelo usuário não são deduções de IRRF ou RPPS.
+	const lerDescontoInformado = id => {
+		const elemento = document.getElementById(id);
+		const texto = elemento.value.trim();
+		const valor = texto === '' ? 0 : Number(texto);
+		if (!Number.isFinite(valor) || valor < 0 || valor > 9999999.99 || Math.abs(valor * 100 - Math.round(valor * 100)) > 1e-6) {
+			throw new Error('Informe um valor válido em reais e centavos para ' + elemento.previousElementSibling.textContent + '.');
+		}
+		return Math.round((valor + Number.EPSILON) * 100) / 100;
+	};
+	const emprestimoConsignado = lerDescontoInformado('emprestimoConsignado');
+	const outrosDescontos = lerDescontoInformado('outrosDescontos');
+	let totalDescontos = totalDescontoIamspe + totalContribuicaoPrevidenciaria + totalIRPF + emprestimoConsignado + outrosDescontos;
 	let remuneracaoLiquida = remuneracaoBruta - totalDescontos;
 	
 	document.getElementById("totalAuxilioAlimentacao").innerHTML = numberToReal(totalAuxilioAlimentacao);
@@ -138,6 +150,8 @@ function calcSallary() {
 		numberToReal(totalContribuicaoPrevidenciaria);
 	document.getElementById("totalIRPF").innerHTML = 
 		numberToReal(totalIRPF);
+	document.getElementById("totalEmprestimoConsignado").textContent = numberToReal(emprestimoConsignado);
+	document.getElementById("totalOutrosDescontos").textContent = numberToReal(outrosDescontos);
 	
 	document.getElementById("totalAdicionalQualificacao").innerHTML = 
 	numberToReal(adicionalQualificacao);

@@ -55,3 +55,9 @@
 .indem-check input{width:17px;height:17px;flex-shrink:0;accent-color:var(--red)}
 .remote-remainder{font-size:10.5px;line-height:1.55;color:#956c43;background:#fdf7ed;border-radius:7px;padding:8px 10px;margin:8px 0 0}
 @media(max-width:650px){.indem-work-modes{grid-template-columns:1fr}.indem-mode .field label{min-height:auto}.indem-rules{gap:5px}.indem-rules span{font-size:9px}}
+
+/* Valores de diligências agora informados pelo próprio servidor. */
+.indem-values{margin:0 0 15px}
+.indem-values .field{min-width:0}
+.indem-values input,.indem-mode input[type="text"]{font-variant-numeric:tabular-nums}
+.indem-values input:focus-visible,.indem-mode input:focus-visible{outline:2px solid #a64e59;outline-offset:1px}

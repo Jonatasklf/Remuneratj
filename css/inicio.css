@@ -11,3 +11,19 @@
 @media(max-width:1000px){.hero-body{grid-template-columns:1fr;min-height:0;padding-top:48px;padding-bottom:49px}.hero-art{display:none}.hero h1{max-width:650px}.hero-choices{max-width:670px}}
 @media(max-width:620px){.wrap{padding-left:20px;padding-right:20px}.top{min-height:75px}.brand-word{font-size:17px}.brand-icon{width:40px;height:40px}.status{display:none}.hero-body{padding-top:45px;padding-bottom:43px}.hero h1{font-size:44px;margin:19px 0 13px}.eyebrow{font-size:9px;letter-spacing:.1em}.lead{font-size:14px;margin-bottom:21px}.hero-choices{grid-template-columns:1fr;gap:10px}.choice{min-height:69px;padding:12px 16px}.choice strong{font-size:15px}.hero-aside{font-size:10px;margin-top:16px}.summary-grid{grid-template-columns:1fr;gap:17px;padding-top:24px;padding-bottom:25px}.summary-item{padding:0}.summary-item+.summary-item{padding:17px 0 0;border-left:0;border-top:1px solid #ebdedf}.footer-inner{display:block}.credit{text-align:left;margin-top:16px}.disclaimer{padding:22px 0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.choice{transition:none}}
+
+/* Terceira carreira: três acessos claros na primeira tela, sem redesenhar a home. */
+.hero-choices{grid-template-columns:1fr;max-width:510px}
+.choice{min-height:61px}
+.summary-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:850px){.summary-grid{grid-template-columns:1fr}}
+
+/* Convite discreto para sugerir carreiras não contempladas. */
+.career-request{display:flex;align-items:center;justify-content:space-between;gap:14px;max-width:510px;margin:18px 0 0;padding:15px 16px;border:1px solid #ffffff3b;background:#ffffff0c;border-radius:11px}
+.career-request-text{display:flex;flex-direction:column;gap:3px;min-width:0}
+.career-request-text strong{font-size:13px;color:#fff;font-weight:700}
+.career-request-text span{font-size:11px;color:#f2d8dc}
+.career-request-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;flex-shrink:0;padding:10px 13px;border-radius:8px;color:#6c2330;background:#fff;font-size:12px;font-weight:750;line-height:1.2;transition:background-color .16s}
+.career-request-button:hover{background:#fff1df}
+@media(max-width:620px){.career-request{align-items:stretch;flex-direction:column;gap:13px}.career-request-button{width:100%;min-height:42px}.career-request-text strong{font-size:13px}.career-request-text span{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.career-request-button{transition:none}}

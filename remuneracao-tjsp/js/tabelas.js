@@ -2,7 +2,7 @@
 window.REMUNERATJ_TABELAS = {
   "meta": {
     "editadoEm": "2026-10-29",
-    "fonte": "Atualização previdenciária conforme Fazenda SP 01/01/2026; IRPF conforme Receita Federal 01/2026; OJ conforme TJSP Anexo III-a 01/03/2026."
+    "fonte": "Atualização previdenciária conforme Fazenda SP 01/01/2026; IRPF conforme Receita Federal 01/2026; OJ conforme TJSP Anexo III-a 01/03/2026. Psicólogo e Assistente Social: Anexo III-a TJSP 01/03/2026 (jornada de 6 horas)."
   },
   "vencimentos": {
     "base": [
@@ -356,12 +356,89 @@ window.REMUNERATJ_TABELAS = {
       }
     ],
     "indenizacoes": {
-      "competencia": "09/2026",
-      "valorCotaGratuita": 103.16,
-      "valorAntecipacao": 2755.71,
       "valorUfesp": 38.42,
       "retencaoAdministrativa": 0.05,
-      "fonte": "Comunicado CG nº 867/2026 do TJSP — valores de setembro/2026; atualização manual pelo administrador."
+      "fonte": "Valores de cota gratuita, antecipação e competência em /valores-diligencias.html; UFESP e retenção administrativa nesta tabela."
     }
+  },
+  "psicologiaServicoSocial": {
+    "vigencia": "2026-03-01",
+    "fonte": "https://www.tjsp.jus.br/Download/Portal/CanaisComunicacao/Transparencia/ResCNJ102_Default/Anexo03a/rescnj215anexo03a202604.pdf",
+    "observacao": "Os dois cargos têm a mesma tabela remuneratória 8A–8R, jornada de 6 horas, conforme Anexo III-a vigente desde 01/03/2026. Valores básicos já incluem salário-base e gratificação judiciária (GAJ). Não contempla funções de gabinete.",
+    "multiplicadorGaj": 8.172,
+    "padroes": [
+      {
+        "padrao": "8A-CE",
+        "remuneracao": 10570.65
+      },
+      {
+        "padrao": "8B-CE",
+        "remuneracao": 10610.02
+      },
+      {
+        "padrao": "8C-CE",
+        "remuneracao": 10649.97
+      },
+      {
+        "padrao": "8D-CE",
+        "remuneracao": 10690.53
+      },
+      {
+        "padrao": "8E-CE",
+        "remuneracao": 10731.7
+      },
+      {
+        "padrao": "8F-CE",
+        "remuneracao": 10773.48
+      },
+      {
+        "padrao": "8G-CE",
+        "remuneracao": 10858.3
+      },
+      {
+        "padrao": "8H-CE",
+        "remuneracao": 10901.98
+      },
+      {
+        "padrao": "8I-CE",
+        "remuneracao": 10946.31
+      },
+      {
+        "padrao": "8J-CE",
+        "remuneracao": 10991.32
+      },
+      {
+        "padrao": "8K-CE",
+        "remuneracao": 11036.99
+      },
+      {
+        "padrao": "8L-CE",
+        "remuneracao": 11083.35
+      },
+      {
+        "padrao": "8M-CE",
+        "remuneracao": 11177.47
+      },
+      {
+        "padrao": "8N-CE",
+        "remuneracao": 11225.94
+      },
+      {
+        "padrao": "8O-CE",
+        "remuneracao": 11275.13
+      },
+      {
+        "padrao": "8P-CE",
+        "remuneracao": 11325.07
+      },
+      {
+        "padrao": "8Q-CE",
+        "remuneracao": 11375.75
+      },
+      {
+        "padrao": "8R-CE",
+        "remuneracao": 11427.19
+      }
+    ]
   }
 };
