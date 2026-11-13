@@ -1,7 +1,7 @@
 <!doctype html>
 <!DOCTYPE html>
 
-<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="#7e1e29" name="theme-color"/><title>Psicólogo e Assistente Social TJSP | RemuneraTJ</title><link href="../assets/favicon.svg" rel="icon" type="image/svg+xml"/><link href="../remuneracao-oficial/css/oficial.css" rel="stylesheet"/><link href="../shared/css/simuladores.css" rel="stylesheet"/> <meta content="Calculadora de salário de Psicólogo Judiciário e Assistente Social Judiciário do TJSP: referência 8, GAJ, AQ, quinquênios, auxílio-saúde, RPPS e IRRF. Simulador independente." name="description"/>
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="#7e1e29" name="theme-color"/><title>Psicólogo e Assistente Social TJSP | RemuneraTJ</title><link href="../assets/favicon.svg" rel="icon" type="image/svg+xml"/><link href="../remuneracao-oficial/css/oficial.css" rel="stylesheet"/><link href="../shared/css/simuladores.css?v=20261113-accordion-v1" rel="stylesheet"/> <meta content="Calculadora de salário de Psicólogo Judiciário e Assistente Social Judiciário do TJSP: referência 8, GAJ, AQ, quinquênios, auxílio-saúde, RPPS e IRRF. Simulador independente." name="description"/>
 <link href="https://jonatasklf.github.io/Remuneratj/remuneracao-oficial/index.html" rel="canonical"/>
 <meta content="pt_BR" property="og:locale"/>
 <meta content="RemuneraTJ" property="og:site_name"/>
@@ -50,7 +50,7 @@
 <div class="field"><label for="filhoDeficiencia">Filhos com deficiência</label><input id="filhoDeficiencia" max="20" min="0" step="1" type="number" value="0"/></div>
 <div class="field span2"><label for="saudeMajorada">Acréscimo de 50% no auxílio-saúde por deficiência ou doença grave?</label><select id="saudeMajorada"><option selected="" value="1">Não</option><option value="1.5">Sim</option></select></div>
 </div></div>
-<details class="panel fold iamspe-panel" open=""><summary><span class="mini-icon"><svg aria-hidden="true" class="icon"><use href="#i-shield"></use></svg></span><span><strong>IAMSPE e dependentes</strong><small>Contribuições do servidor, beneficiários e agregados</small></span><span class="optional-label">OPCIONAL</span><span class="chevron">⌄</span></summary>
+<details class="panel fold iamspe-panel"><summary><span class="mini-icon"><svg aria-hidden="true" class="icon"><use href="#i-shield"></use></svg></span><span><strong>IAMSPE e dependentes</strong><small>Contribuições do servidor, beneficiários e agregados</small></span><span class="optional-label">OPCIONAL</span><span class="chevron">⌄</span></summary>
 <div class="fold-body"><p class="fold-explanation">Indique se o servidor contribui para o IAMSPE e, quando houver, informe os beneficiários e agregados. Todos os descontos aparecerão separadamente no resultado.</p><div class="fields">
 <div class="field span2"><label for="iamspe">IAMSPE — situação do servidor</label><select id="iamspe"><option selected="" value="0.02">Sim (menos de 59 anos)</option><option value="0.03">Sim (a partir de 59 anos)</option><option value="0">Não</option></select></div>
 <div class="field"><label for="dependentesMenor">Beneficiários abaixo de 59 anos</label><input id="dependentesMenor" max="20" min="0" step="1" type="number" value="0"/></div>
@@ -58,13 +58,13 @@
 <div class="field"><label for="agregadosMenor">Agregados abaixo de 59 anos</label><input id="agregadosMenor" max="20" min="0" step="1" type="number" value="0"/></div>
 <div class="field"><label for="agregadosMaior">Agregados a partir de 59 anos</label><input id="agregadosMaior" max="20" min="0" step="1" type="number" value="0"/></div>
 </div></div></details>
-<details class="panel fold previdencia-panel" open=""><summary><span class="mini-icon"><svg aria-hidden="true" class="icon"><use href="#i-shield"></use></svg></span><span><strong>Previdência e imposto de renda</strong><small>RPPS integral, limitado ao teto ou contribuição informada</small></span><span class="chevron">⌄</span></summary><div class="fold-body fields">
+<details class="panel fold previdencia-panel"><summary><span class="mini-icon"><svg aria-hidden="true" class="icon"><use href="#i-shield"></use></svg></span><span><strong>Previdência e imposto de renda</strong><small>RPPS integral, limitado ao teto ou contribuição informada</small></span><span class="chevron">⌄</span></summary><div class="fold-body fields">
 <div class="field span2"><label for="modoPrevidencia">Regime de contribuição ao RPPS</label><select id="modoPrevidencia"><option value="integral">RPPS sobre a base integral</option><option selected="" value="teto">RPPS limitado ao teto do INSS</option><option value="manual">Informar contribuição mensal manualmente</option></select><small>O RPPS limitado ao teto NÃO significa incluir SPPREVCOM: nenhuma contribuição opcional à previdência complementar será simulada.</small></div>
 <div class="field span2" hidden="" id="manualBox"><label for="previdenciaManual">Contribuição previdenciária informada (R$)</label><input id="previdenciaManual" max="99999" min="0" step="0.01" type="number" value="0"/></div>
 <div class="field span2"><label for="dependentesIr">Dependentes para IRRF</label><input id="dependentesIr" max="20" min="0" step="1" type="number" value="0"/></div>
 </div></details>
 
-<details class="panel fold" open=""><summary><span class="mini-icon"><svg aria-hidden="true" class="icon"><use href="#i-wallet"></use></svg></span><span><strong>Outros descontos em folha</strong><small>Consignado e descontos opcionais</small></span><span class="optional-label">OPCIONAL</span><span class="chevron">⌄</span></summary>
+<details class="panel fold"><summary><span class="mini-icon"><svg aria-hidden="true" class="icon"><use href="#i-wallet"></use></svg></span><span><strong>Outros descontos em folha</strong><small>Consignado e descontos opcionais</small></span><span class="optional-label">OPCIONAL</span><span class="chevron">⌄</span></summary>
 <div class="fold-body"><p class="fold-explanation">Informe o valor descontado em folha. Essas parcelas reduzem somente o líquido, sem alterar IRRF, RPPS ou IAMSPE. Se não houver, deixe zero.</p><div class="fields">
 <div class="field"><label for="emprestimoConsignado">Empréstimo consignado (R$)</label><input id="emprestimoConsignado" inputmode="decimal" max="9999999.99" min="0" step="0.01" type="number" value="0"/><small>Valor mensal das parcelas consignadas</small></div>
 <div class="field"><label for="outrosDescontos">Outros descontos em folha (R$)</label><input id="outrosDescontos" inputmode="decimal" max="9999999.99" min="0" step="0.01" type="number" value="0"/><small>Não repita os descontos já calculados acima</small></div>
@@ -91,9 +91,15 @@
 </div>
 <div class="result-actions"><button class="btn btn-outline" disabled="" id="copyButton" type="button">Copiar resumo</button><button class="btn btn-outline" disabled="" id="printButton" type="button">Imprimir</button></div>
 </div>
-<details class="panel breakdown" open=""><summary><span><strong>Detalhamento da remuneração</strong><small>Vencimentos, adicionais, auxílios e descontos</small></span><span aria-hidden="true">⌄</span></summary><div class="rows" id="detalhes"><div class="placeholder">Os detalhes aparecerão após o cálculo.</div></div></details></div>
+<details class="panel breakdown"><summary><span><strong>Detalhamento da remuneração</strong><small>Vencimentos, adicionais, auxílios e descontos</small></span><span aria-hidden="true">⌄</span></summary><div class="rows" id="detalhes"><div class="placeholder">Os detalhes aparecerão após o cálculo.</div></div></details></div>
 
 <div class="disclaimer"><b>Como interpretar</b><p>Esta simulação considera salário-base, GAJ, AQ, quinquênios, sexta-parte, auxílios regulares, IAMSPE, RPPS e IRRF. Não inclui atrasados, substituições, gratificações eventuais, descontos retroativos de transporte nem previdência complementar (SPPREVCOM). Consignados e outros descontos somente entram se informados pelo usuário.</p><p>O salário pode diferir da folha por arredondamentos, incidências individualizadas e enquadramento previdenciário. Para vagas de gabinete ou condições especiais, as tabelas e rubricas podem ser diferentes.</p><a href="https://www.tjsp.jus.br/Download/Portal/CanaisComunicacao/Transparencia/ResCNJ102_Default/Anexo03a/rescnj215anexo03a202604.pdf" rel="noopener noreferrer" target="_blank">Tabela remuneratória TJSP · março de 2026 ↗</a></div>
 </div></section></div></main>
 <footer class="rt-footer"><div class="rt-shell rt-footer-inner"><div><strong>Remunera<span>TJ</span></strong><p>Simuladores independentes de remuneração do TJSP</p><small>Ferramenta informativa, sem vínculo institucional com o Tribunal.</small></div><div class="rt-credits"><p>Desenvolvido por Jonatas Calefi dos Santos</p><a href="mailto:jonatasklfsantos@outlook.com">Entrar em contato</a></div></div></footer>
-<script src="../remuneracao-tjsp/js/tabelas.js"></script><script src="./js/calculo-profissionais.js?v=aq-20261113"></script><script src="./js/interface-profissionais.js?v=aq-20261113"></script></body></html>
+<script src="../remuneracao-tjsp/js/tabelas.js"></script><script src="./js/calculo-profissionais.js?v=aq-20261113"></script><script src="./js/interface-profissionais.js?v=aq-20261113"></script><script>
+// Os paineis expansíveis começam fechados em cada entrada na página.
+window.addEventListener('pageshow', () => {
+  document.querySelectorAll('details.panel').forEach((panel) => { panel.open = false; });
+});
+</script>
+</body></html>

@@ -179,3 +179,37 @@ body.rt-calculator .salary-card-top {display:flex;align-items:center;justify-con
 body.rt-calculator .salary-category svg.icon {width:16px;height:16px;}
 /* Sprite SVG oculto: impede área vazia antes do cabeçalho do Oficial. */
 body.rt-calculator svg.icon-definitions {position:absolute!important;width:0!important;height:0!important;overflow:hidden!important;pointer-events:none!important;}
+
+/* Etiqueta OPCIONAL consistente em todas as calculadoras. */
+body.rt-calculator .fold>summary>.optional-label,
+body.rt-calculator .options-panel>summary>.details-tag {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  margin-left:auto;
+  background:#f9edef;
+  color:#a64d5c;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.7px;
+  line-height:1.2;
+  padding:5px 7px;
+  border-radius:6px;
+  white-space:nowrap;
+}
+/* Texto do título ocupa o espaço restante, mantendo a seta alinhada. */
+body.rt-calculator .fold>summary>span:nth-child(2),
+body.rt-calculator .options-panel>summary>.details-heading {
+  flex:1 1 auto;
+  min-width:0;
+}
+body.rt-calculator .fold>summary>.chevron,
+body.rt-calculator .options-panel>summary>.chevron {
+  flex:0 0 auto;
+  margin-left:0;
+}
+/* Mantém as etiquetas visíveis e bem alinhadas também em celulares. */
+@media(max-width:650px) {
+  body.rt-calculator .fold>summary>.optional-label {display:inline-flex;}
+}
