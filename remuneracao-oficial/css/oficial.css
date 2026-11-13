@@ -61,3 +61,7 @@
 .indem-values .field{min-width:0}
 .indem-values input,.indem-mode input[type="text"]{font-variant-numeric:tabular-nums}
 .indem-values input:focus-visible,.indem-mode input:focus-visible{outline:2px solid #a64e59;outline-offset:1px}
+
+/* Valores provenientes da AOJESP; exibidos para conferência, sem edição. */
+.indem-auto-value{display:flex;align-items:center;min-height:46px;padding:10px 13px;border:1px solid #e9ded7;border-radius:9px;background:#fbf7f3;color:#71303a;font-size:18px;font-weight:800;font-variant-numeric:tabular-nums}
+.indem-fonte-status{font-size:11px;line-height:1.55;color:#766e71;background:#fbf9f7;border:1px solid #ede6e1;border-radius:9px;padding:9px 12px;margin:9px 0 14px}

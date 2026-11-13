@@ -23,8 +23,8 @@
     const abatimento=bruto<=5000?imposto:(bruto<=7350?Math.min(imposto,Math.max(0,cents(978.62-.133145*bruto))):0);
     return cents(Math.max(0,imposto-abatimento));
   }
-  // Cada servidor informa as cotas unitárias e a antecipação do seu mês.
-  // Sem valores persistidos no servidor: a simulação usa apenas os campos preenchidos.
+  // Cota gratuita e antecipação vêm dos últimos valores AOJESP validados no arquivo JSON.
+  // Ressarcimentos de mandados pagos continuam informados pelo servidor.
   function moedaInformada(x, nome) {
     if (typeof x === 'number') return cents(valid(x, nome, 0, 1e7));
     let texto = String(x ?? '').trim().replace(/R\$/gi, '').replace(/\s/g, '');
@@ -76,7 +76,7 @@
       gratuita:gratuitaPresencial, gratuitaRemota,
       paga:pagaPresencial, pagaRemota,
       antecipacao, antecipacaoCadastrada, incluirAntecipacao,
-      competencia:'informada pelo servidor',
+      competencia:entrada.competenciaDiligencias || 'referência AOJESP',
       total:cents(gratuitaPresencial.total+gratuitaRemota.total+pagaPresencial.total+pagaRemota.total+antecipacao)
     };
   }
