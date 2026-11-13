@@ -1,0 +1,92 @@
+name: Atualizar diligências e publicar RemuneraTJ
+
+on:
+  schedule:
+    # Checagem diária às 09h17 de São Paulo (12h17 UTC).
+    - cron: '17 12 * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: remuneratj-pages
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    # Atualiza valores apenas no agendamento ou por acionamento manual.
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verificar parser e fallback
+        run: python -m unittest discover -s tests -p 'test_aojesp.py' -v
+      - name: Validar cálculo financeiro do OJ
+        run: node tests/test_calculo_oj.js
+      - name: Ler valores públicos da AOJESP
+        run: python scripts/atualizar_diligencias_aojesp.py
+      - name: Salvar mudanças verificadas no repositório
+        shell: bash
+        run: |
+          if git diff --quiet -- dados/diligencias-aojesp.json; then
+            echo 'Valores inalterados. Arquivo anterior mantido.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add dados/diligencias-aojesp.json
+          git commit -m 'Atualizar diligências publicadas pela AOJESP'
+          git push origin HEAD:main
+
+  publicar:
+    # GITHUB_TOKEN não aciona build em Pages a partir da branch.
+    # Esta etapa publica o HTML, CSS, JS e JSON diretamente.
+    needs: atualizar
+    if: always() && (needs.atualizar.result == 'success' || needs.atualizar.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Baixar versão mais recente
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Preparar site estático
+        shell: bash
+        run: |
+          mkdir -p public
+          for f in index.html sitemap.xml robots.txt .nojekyll; do
+            if test -f "$f"; then cp "$f" public/; fi
+          done
+          for d in assets css shared dados remuneracao-tjsp remuneracao-oficial remuneracao-profissionais; do
+            if test -d "$d"; then cp -R "$d" public/; fi
+          done
+          find . -maxdepth 1 -type f -name 'google*.html' -exec cp '{}' public/ \;
+          test -f public/index.html
+          test -f public/dados/diligencias-aojesp.json
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+      - name: Enviar arquivos estáticos
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - name: Publicar no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
