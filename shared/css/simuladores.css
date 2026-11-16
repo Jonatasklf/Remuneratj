@@ -213,3 +213,11 @@ body.rt-calculator .options-panel>summary>.chevron {
 @media(max-width:650px) {
   body.rt-calculator .fold>summary>.optional-label {display:inline-flex;}
 }
+
+/* Ajustes de comissionados e condição judicial específica. */
+body.rt-calculator .avancado-check{display:flex;align-items:flex-start;gap:10px;line-height:1.5;font-size:13px;color:#493c43;cursor:pointer;}
+body.rt-calculator .avancado-check input[type=checkbox]{width:17px;height:17px;min-width:17px;margin-top:2px;accent-color:#841f31;cursor:pointer;}
+body.rt-calculator .avancado-nota{color:#745e66;font-size:12px;line-height:1.55;margin:8px 0;}
+body.rt-calculator .avancado-nota a,body.rt-calculator .options-content .field-explanation a{color:#841f31;text-decoration:underline;}
+body.rt-calculator #comissaoAviso{background:#fff9f5;border:1px solid #e6d8d0;border-radius:8px;padding:12px;color:#604753;line-height:1.5;font-size:12px;}
+body.rt-calculator #comissaoNivelBox[hidden],body.rt-calculator #comissaoAviso[hidden]{display:none !important;}

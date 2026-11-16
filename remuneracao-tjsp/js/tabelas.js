@@ -19,6 +19,158 @@ window.REMUNERATJ_TABELAS = {
         "valor": 2687.15
       }
     ],
+    "cargosComissionadosIntegral": [
+      {
+            "codigo": "com:aux-enc",
+            "nome": "Auxiliar Judiciário Encarregado",
+            "nivel1": 4811.6,
+            "nivel2": 5033.93
+      },
+      {
+            "codigo": "com:aux-chefe",
+            "nome": "Auxiliar Judiciário Chefe",
+            "nivel1": 5483.98,
+            "nivel2": 5740.8
+      },
+      {
+            "codigo": "com:aux-chefe-gab",
+            "nome": "Auxiliar Judiciário Chefe — Gabinete",
+            "nivel1": 7858.5,
+            "nivel2": 8115.32
+      },
+      {
+            "codigo": "com:aux-enc-tecnico",
+            "nome": "Auxiliar Judiciário Encarregado Técnico",
+            "nivel1": 5594.69,
+            "nivel2": 5853.68
+      },
+      {
+            "codigo": "com:assist-jud",
+            "nome": "Assistente Judiciário",
+            "nivel1": 12092.1,
+            "nivel2": 12384.2
+      },
+      {
+            "codigo": "com:aux-gab",
+            "nome": "Auxiliar de Gabinete Judiciário",
+            "nivel1": 7637.67,
+            "nivel2": 7929.77
+      },
+      {
+            "codigo": "com:oficial-gab",
+            "nome": "Oficial de Gabinete Judiciário",
+            "nivel1": 9813.14,
+            "nivel2": 10177.78
+      },
+      {
+            "codigo": "com:analista-tecnico",
+            "nome": "Analista Técnico Judiciário",
+            "nivel1": 8923.43,
+            "nivel2": 9288.07
+      },
+      {
+            "codigo": "com:analista-gab",
+            "nome": "Analista Técnico Judiciário — Gabinete",
+            "nivel1": 10844.83,
+            "nivel2": 11209.47
+      },
+      {
+            "codigo": "com:chefe-sec",
+            "nome": "Chefe de Seção Judiciário",
+            "nivel1": 9814.62,
+            "nivel2": 10217.7
+      },
+      {
+            "codigo": "com:chefe-sec-gab",
+            "nome": "Chefe de Seção Judiciário — Gabinete",
+            "nivel1": 12361.25,
+            "nivel2": 12764.33
+      },
+      {
+            "codigo": "com:chefe-sec-tecnico",
+            "nome": "Chefe de Seção Técnica Judiciário",
+            "nivel1": 12365.25,
+            "nivel2": 12849.73
+      },
+      {
+            "codigo": "com:chefe-sec-tecnico-gab",
+            "nome": "Chefe de Seção Técnica Judiciário — Gabinete",
+            "nivel1": 14343.05,
+            "nivel2": 14827.53
+      },
+      {
+            "codigo": "com:supervisor",
+            "nome": "Supervisor de Serviço",
+            "nivel1": 16077.31,
+            "nivel2": 16684.38
+      },
+      {
+            "codigo": "com:supervisor-gab",
+            "nome": "Supervisor de Serviço — Gabinete",
+            "nivel1": 16915.49,
+            "nivel2": 17522.56
+      },
+      {
+            "codigo": "com:assist-tec-gab",
+            "nome": "Assistente Técnico de Gabinete Judiciário",
+            "nivel1": 16793.58,
+            "nivel2": 17425.68
+      },
+      {
+            "codigo": "com:assist-juridico",
+            "nome": "Assistente Jurídico",
+            "nivel1": 16793.58,
+            "nivel2": 17425.68
+      },
+      {
+            "codigo": "com:coordenador",
+            "nome": "Coordenador",
+            "nivel1": 17573.05,
+            "nivel2": 18215.6
+      },
+      {
+            "codigo": "com:coordenador-gab",
+            "nome": "Coordenador — Gabinete",
+            "nivel1": 18362.62,
+            "nivel2": 19005.17
+      },
+      {
+            "codigo": "com:assist-tec",
+            "nome": "Assistente Técnico Judiciário",
+            "nivel1": 18328.69,
+            "nivel2": 19001.59
+      },
+      {
+            "codigo": "com:diretor",
+            "nome": "Diretor",
+            "nivel1": 19771.69,
+            "nivel2": 20488.35
+      },
+      {
+            "codigo": "com:diretor-gab",
+            "nome": "Diretor — Gabinete",
+            "nivel1": 23520.17,
+            "nivel2": 24236.83
+      },
+      {
+            "codigo": "com:assessor-tecnico-gab",
+            "nome": "Assessor Técnico de Gabinete Judiciário",
+            "nivel1": 24413.89,
+            "nivel2": 25190.08
+      },
+      {
+            "codigo": "com:secretario",
+            "nome": "Secretário",
+            "nivel1": 31847.1,
+            "nivel2": 32803.04
+      },
+      {
+            "codigo": "com:chefe-gab",
+            "nome": "Chefe de Gabinete Judiciário",
+            "nivel1": 26772.3,
+            "nivel2": 27728.24
+      }
+],
     "baseGratificacao": 972.37,
     "multiplicadoresGaj": [
       {

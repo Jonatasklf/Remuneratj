@@ -41,29 +41,34 @@ function calcSallary() {
 	let dependentesIamspeIdadeSuperior = Number(document.getElementById("dependentesIamspeIdadeSuperior").value);
 	let dependentes = Number(document.getElementById("dependentes").value);
 	let quinquenios = Number(document.getElementById("quinquenios").value);
+	const efeitoCascata = document.getElementById("efeitoCascata").checked;
+	const nivelComissionado = Number(document.getElementById("nivelComissionado").value);
 	let acrescimoAuxilioSaude = Number(document.getElementById("acrescimoAuxilioSaude").value);
 	let faixaEtariaAuxilioSaude = Number(document.getElementById("faixaEtariaAuxilioSaude").value);
 	let padraoVecimento = document.getElementById("padraoVencimento").value;
 
+	// As opções anteriores preservam integralmente as regras financeiras já conferidas.
+	// Novos cargos em comissão usam remuneração integral do Anexo III-b (não se soma GAJ novamente).
+	const comissao = (v.cargosComissionadosIntegral || []).find(item => item.codigo === cargo);
 	let multiplicadorGaj = multiplicadoresGaj.find(m => m.cargo === cargo) ?? multiplicadoresGaj.find(m => m.cargo === "");
 	let multiplicadorRepr = multiplicadoresRepr.find(m => m.cargo === cargo) ?? multiplicadoresRepr.find(m => m.cargo === "");
-	let gaj = multiplicadorGaj.valor * baseGratificacao;
-	let repr = multiplicadorRepr.valor * baseGratificacao;
-	let adicionalProgressao = (valoresProgressao.find(v => v.padrao === padraoVecimento) ?? valoresProgressao.find(v => v.padrao === "5A-CE")).valor;
-	let valorBase = (base.find(b => b.cargo === cargo) ?? base.find(b => b.cargo === "")).valor;
+	let adicionalProgressao = comissao ? 0 : (valoresProgressao.find(v => v.padrao === padraoVecimento) ?? valoresProgressao.find(v => v.padrao === "5A-CE")).valor;
+	let valorBase = comissao ? (nivelComissionado === 2 ? comissao.nivel2 : comissao.nivel1) : (base.find(b => b.cargo === cargo) ?? base.find(b => b.cargo === "")).valor;
+	let gaj = comissao ? 0 : multiplicadorGaj.valor * baseGratificacao;
+	let repr = comissao ? 0 : multiplicadorRepr.valor * baseGratificacao;
 	let vencimentos = valorBase + gaj + repr + adicionalProgressao;
 	let adicionalQualificacao = cargoNivelSuperior.includes(cargo) && formacaoAcademica == 0.05
 		? 0.0
-		: formacaoAcademica * (vencimentos);
+		: formacaoAcademica * vencimentos;
 	let adicionalTempoServico = 0.0;
 	let totalContribuicaoPrevidenciaria = 0.0;
 	
 	// com sexta parte (20 anos = 4 quinquenios)
 	// COMUNICADO Nº 94/2024 SGP: incluiu o adicional de qualificação na base de cálculo do adicional de tempo.
 	if (quinquenios >= 4) {
-		adicionalTempoServico = (0.05 * quinquenios + 1 / 6) * (vencimentos - repr + adicionalQualificacao);
+		adicionalTempoServico = (0.05 * quinquenios + 1 / 6) * (vencimentos - repr + (efeitoCascata ? 0 : adicionalQualificacao));
 	} else { // sem sexta parte
-		adicionalTempoServico = 0.05 * quinquenios * (vencimentos - repr + adicionalQualificacao);
+		adicionalTempoServico = 0.05 * quinquenios * (vencimentos - repr + (efeitoCascata ? 0 : adicionalQualificacao));
 	}
 				
 	// cálculo dos auxílios
@@ -87,8 +92,10 @@ function calcSallary() {
 	let remuneracaoPrevidencia = base.find(b => b.cargo === "").valor + adicionalProgressao
 		+ (multiplicadoresGaj.find(m => m.cargo === "").valor * baseGratificacao);
 	let adicionalQualificacaoPrevidencia = formacaoAcademica * remuneracaoPrevidencia;
-	remuneracaoPrevidencia += adicionalQualificacaoPrevidencia;
-	remuneracaoPrevidencia *= 1 + (quinquenios >= 4 ? 0.05 * quinquenios + 1 / 6 : 0.05 * quinquenios);
+	// A decisão judicial específica altera somente a base do adicional temporal, não o AQ em si.
+	const fatorTemporal = 0.05 * quinquenios + (quinquenios >= 4 ? 1 / 6 : 0);
+	remuneracaoPrevidencia = remuneracaoPrevidencia + adicionalQualificacaoPrevidencia +
+		fatorTemporal * (remuneracaoPrevidencia + (efeitoCascata ? 0 : adicionalQualificacaoPrevidencia));
 
 	// O valor previdenciário depende do enquadramento funcional individual.
 	// "teto" mantém o comportamento original do Escrevente, sem alterar seu resultado padrão.

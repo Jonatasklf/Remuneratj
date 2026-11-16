@@ -15,3 +15,16 @@
 .seo-info a:focus-visible{outline:2px solid #d6ad73;outline-offset:3px}
 .seo-info__note{margin:22px 0 0!important;font-size:13px!important}
 @media(max-width:780px){.seo-info__grid,.seo-info__grid--three{grid-template-columns:1fr;gap:12px}.seo-info__inner{padding:28px 20px 32px}.seo-info__item{padding:17px}}
+
+/* Perguntas e fontes: sem alteração da interface principal ou dos formulários */
+.seo-info--faq{background:#fff;border-top:1px solid #eee6e7}
+.seo-info--faq .seo-info__inner{padding-top:35px;padding-bottom:42px}
+.seo-info__faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
+.seo-info__faq article{border:1px solid #eadfe1;border-radius:12px;background:#fcfaf9;padding:18px 19px}
+.seo-info__faq h3{font-weight:750;margin:0 0 8px;color:#521e29}
+.seo-info__faq p{margin:0;font-size:13px;line-height:1.75}
+.seo-info__faq a{font-weight:650}
+.seo-info__sources{border-top:1px solid #eee2e4;margin-top:24px;padding-top:19px}
+.seo-info__sources h3{font-size:15px;margin:0 0 6px}
+.seo-info__sources p{font-size:13px;margin:0}
+@media(max-width:780px){.seo-info__faq{grid-template-columns:1fr;gap:12px}.seo-info__faq article{padding:16px}}

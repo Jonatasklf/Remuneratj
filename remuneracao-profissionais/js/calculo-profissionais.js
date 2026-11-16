@@ -58,9 +58,10 @@
     // Os holerites de 2025 e 2026 demonstram truncamento do AQ ao centavo.
     const aq=truncCents(basica*aqTaxa);
     const q=count(entrada.quinquenios,'quinquênios',12);
-    const quinqueniosBase=cents((base+aq)*.05*q);
+    const aqNaBaseTemporal=entrada.efeitoCascata?0:aq; // condição judicial específica
+    const quinqueniosBase=cents((base+aqNaBaseTemporal)*.05*q);
     const quinqueniosGaj=cents(gaj*.05*q);
-    const sextaParte=q>=4?cents((basica+aq)/6):0;
+    const sextaParte=q>=4?cents((basica+aqNaBaseTemporal)/6):0;
     const remuneracao=cents(basica+aq+quinqueniosBase+quinqueniosGaj+sextaParte);
     const auxilios={};
     for (const [k,valor] of Object.entries({alimentacao:auxTabela.alimentacao,transporte:auxTabela.transporte,creche:auxTabela.creche,filhoDeficiencia:auxTabela.filhoDeficiencia})) {

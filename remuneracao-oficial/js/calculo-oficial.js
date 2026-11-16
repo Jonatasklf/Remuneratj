@@ -105,10 +105,11 @@
     const gaj=cents(padrao.remuneracao-salarioBase-retej); // conciliação dos centavos com tabela oficial
     const basica=cents(salarioBase+gaj+retej);
     const aq=cents(basica*taxaAq);
+    const aqNaBaseTemporal = entrada.efeitoCascata ? 0 : aq; // decisão judicial específica; não elimina o AQ da remuneração
     // Holerite 02/2025 permite aferir repartição: 10% base+RETEJ+AQ, mais 10% GAJ.
-    const quinqueniosBase=cents((salarioBase+retej+aq)*quinquenios*.05);
+    const quinqueniosBase=cents((salarioBase+retej+aqNaBaseTemporal)*quinquenios*.05);
     const quinqueniosGaj=cents(gaj*quinquenios*.05);
-    const sextaParte=quinquenios>=4?cents((salarioBase+retej+gaj+aq)/6):0;
+    const sextaParte=quinquenios>=4?cents((salarioBase+retej+gaj+aqNaBaseTemporal)/6):0;
     const remuneracao=cents(basica+aq+quinqueniosBase+quinqueniosGaj+sextaParte);
     const unitarios={alimentacao:a.alimentacao,transporte:a.transporte,creche:a.creche,filhoDeficiencia:a.filhoDeficiencia};
     const aux={};

@@ -102,6 +102,16 @@
     manualInput.disabled = !manual;
   }
   modoPrevidencia.addEventListener('change', syncPrevidencia);
+  const cargoSelector = document.getElementById('cargo');
+  const nivelBox = document.getElementById('comissaoNivelBox');
+  const avisoComissao = document.getElementById('comissaoAviso');
+  function sincronizarCargo() {
+    const comissao = cargoSelector.value.startsWith('com:');
+    nivelBox.hidden = !comissao;
+    avisoComissao.hidden = !comissao;
+  }
+  cargoSelector.addEventListener('change', sincronizarCargo);
+  sincronizarCargo();
   const transport = document.getElementById('diasTransporte');
   const shortcuts = Array.from(document.querySelectorAll('[data-presencial]'));
   function syncPreset() {
@@ -122,6 +132,7 @@
   document.getElementById('resetBtn').addEventListener('click', () => {
     form.reset();
     syncPrevidencia();
+    sincronizarCargo();
     syncPreset();
     setPending();
   });
